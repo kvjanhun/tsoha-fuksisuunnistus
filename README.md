@@ -15,18 +15,18 @@ Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Kä
 #### Ylläpitäjä (tuutorivastaavat):
 * Yksi tili, vaikka ylläpitäjiä olisi useampia
 * Hallinnoi käyttäjiä (rasteja)
-..* Lisää käyttäjät
-..* Poistaa käyttäjät
-..* Pystyy muokkaamaan käyttäjien tietoja
+...* Lisää käyttäjät
+...* Poistaa käyttäjät
+...* Pystyy muokkaamaan käyttäjien tietoja
 * Näkee kaikkien käyttäjien tiedot
 * Lisää suunnistuksen aluksi suunnistavat ryhmät sovellukseen
 
 #### Käyttäjä (rastinvetäjät):
 * Näkee omat tietonsa
-..* Rastin nimi
-..* Rastin vetäjien nimet
-..* Rastin sijainti
-..* Seuraavan rastin sijainti
+...* Rastin nimi
+...* Rastin vetäjien nimet
+...* Rastin sijainti
+...* Seuraavan rastin sijainti
 * Pystyy muokkaamaan rastinsa sijaintia
 * Pystyy lisäämään suunnistusryhmien suorituksia rastilleen
 ..* Pystyy muokkaamaan suorituksia
