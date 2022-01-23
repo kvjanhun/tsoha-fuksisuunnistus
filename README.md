@@ -7,7 +7,6 @@ Fuksisuunnistus on syksyisin järjestettävä ensimmäisen vuoden opiskelijoille
 
 Sovellus
 --------
-## Sovelluksen toiminta
 
 ### Kuvaus
 Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Käyttäjän roolissa toimivat rastinvetäjät, ylläpitäjätunnusta käyttävät tuutorivastaavat. Rasteja kiertävät ryhmät kirjataan sovellukseen, mutta eivät toimi sovelluksen käyttäjinä. 
