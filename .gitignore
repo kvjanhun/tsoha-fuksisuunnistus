@@ -1,3 +1,7 @@
 suunnitelma.txt
 harjoitus/
 asennus/
+.env
+__pycache__/
+venv/
+
