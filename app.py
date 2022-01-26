@@ -9,5 +9,5 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 @app.route("/")
-    def index():
-        return render_template("index.html")
+def index():
+    return render_template("index.html")
