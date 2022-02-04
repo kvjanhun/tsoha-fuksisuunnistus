@@ -22,11 +22,6 @@ CREATE TABLE checkpoint (
 CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    size INTEGER
-);
-
-CREATE TABLE points (
-    id SERIAL PRIMARY KEY,
-    group_id INTEGER REFERENCES groups,
-    total INTEGER
+    size INTEGER,
+    points INTEGER
 );
