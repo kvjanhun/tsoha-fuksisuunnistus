@@ -43,4 +43,7 @@ Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Kä
 * Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia
 
 ### Nykytilanne
-Sovelluksen toiminnallisuus on vielä toteuttamatta. Sovelluksen rakenne ja tietokanta ovat kuitenkin suunniteltu. Sovelluksen raakile on julkaistu Herokuun.
+Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
+
+Toteutettu toiminnallisuus:
+* Käyttäjätunnusten luominen ja kirjautuminen
