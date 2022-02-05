@@ -24,3 +24,24 @@ def login():
 def logout():
     users.logout()
     return redirect("/")
+
+@app.route("/register", methods=["get", "post"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+
+    if request.method == "POST":
+        username = request.form["username"]
+        if len(username) < 3:
+            return render_template("error.html", message="Liian lyhyt nimi")
+
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+        if password1 != password2:
+            return render_template("error.html", message="Salasanat ovat erit")
+        if password1 == "":
+            return render_template("error.html", message="Salasana on pakollinen")
+
+        if not users.register(username, password1):
+            return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")  
+        return redirect("/")
