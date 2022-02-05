@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
 
+{% if session.user_id %}
 <h2>Etusivu</h2>
+<p>Hienoa, olet kirjautunut nimellä {{ session.user_name }}</p>
+<a href="/logout">Kirjaudu ulos</a>
 
-Testiteksti
+{% else %}
+Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a>
 
+<p>
+
+böröröbösdn
+{% endif %}
 {% endblock %}

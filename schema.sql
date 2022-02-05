@@ -1,6 +1,6 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username TEXT,
+    name TEXT,
     password TEXT,
     admin BOOLEAN
 );
