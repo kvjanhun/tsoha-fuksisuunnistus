@@ -1,6 +1,5 @@
 Tietokantasovellus - Fuksisuunnistus
 ====================================
-Sovellus toimii välineenä rastinvetäjille TKO-älyn fuksisuunnistussuoritusten arvioinnissa. Aiemmin arviointiin on käytetty kynää ja paperia tai Google Sheetsia. Sovelluksen avulla pyritään helpottamaan erityisesti arviointien kirjaamista rasteilla sekä loppupisteiden laskentaa.
 
 ### Mikä on fuksisuunnistus?
 Fuksisuunnistus on syksyisin järjestettävä ensimmäisen vuoden opiskelijoille suunnattu tapahtuma, jossa kierretään pienissä ryhmissä Kumpulan lähiympäristössä lähinnä tuutorien pitämiä rasteja. Rasteilla suoritetaan lyhyt tehtävä, jonka rastinvetäjät arvioivat. Tehtävän lisäksi pisteytetään suorittavan ryhmän mahdolliset asut, ryhmähenki ja muut huomionarvoiset asiat. Eniten pisteitä keränneet ryhmät palkitaan Fuksiaisissa, jotka toimivat suunnistuksen jatkotapahtumana. 
@@ -8,6 +7,9 @@ Fuksisuunnistus on syksyisin järjestettävä ensimmäisen vuoden opiskelijoille
 ---
 Sovellus
 --------
+Sovellus toimii välineenä rastinvetäjille TKO-älyn fuksisuunnistussuoritusten arvioinnissa. Aiemmin arviointiin on käytetty kynää ja paperia tai Google Sheetsia. Sovelluksen avulla pyritään helpottamaan erityisesti arviointien kirjaamista rasteilla sekä loppupisteiden laskentaa.
+
+Sovellus on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
 
 ### Kuvaus
 Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Käyttäjän roolissa toimivat rastinvetäjät, ylläpitäjätunnusta käyttävät tuutorivastaavat. Rasteja kiertävät ryhmät kirjataan tuutorivastaavien toimesta sovellukseen lähdössä, mutta suunnistajat eivät toimi sovelluksen käyttäjinä. Tuutorivastaavilla on ennalta suunniteltu reitti ja he kertovat ryhmän ensimmäisen rastin sijainnin ryhmälle. Rastinvetäjät kertovat ryhmälle seuraavan sijainnin. Rastinvetäjät lisäävät suorituksen valiten listasta ryhmän, täyttäen pisteytyskentät ja kirjoittamalla lyhyen sanallisen kuvauksen (vapaaehtoinen).
@@ -40,3 +42,5 @@ Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Kä
   * Pystyy muokkaamaan suorituksia
 * Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia
 
+### Nykytilanne
+Sovelluksen toiminnallisuus on vielä toteuttamatta. Sovelluksen rakenne ja tietokanta ovat kuitenkin suunniteltu. Sovelluksen raakile on julkaistu Herokuun.
