@@ -1,6 +1,6 @@
 import secrets
 from db import db
-from flask import session
+from flask import redirect, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -44,3 +44,23 @@ def checkpoint_info():
     id = session["user_id"]
     sql = "SELECT theme, location FROM checkpoint WHERE user_id=:id"
     return db.session.execute(sql, {"id":id}).fetchone()
+
+def id_exists():
+    id = session["user_id"]
+    sql = "SELECT COUNT(*) FROM user_info WHERE user_id=:id"
+    return db.session.execute(sql, {"id":id}).fetchone()[0] > 0
+    # Returns True if user_info table already contains session user id.
+
+def create_info(names, phone, theme, location):
+    try:
+        id = session["user_id"]
+        sql1 = """INSERT INTO user_info (user_id, names, phone)
+                VALUES (:id, :names, :phone)"""
+        sql2 = """INSERT INTO checkpoint (user_id, theme, location)
+                VALUES (:id, :theme, :location)"""
+        db.session.execute(sql1, {"id":id, "names":names, "phone":phone})
+        db.session.execute(sql2, {"id":id, "theme":theme, "location":location})
+        db.session.commit()
+        return True
+    except:
+        return False

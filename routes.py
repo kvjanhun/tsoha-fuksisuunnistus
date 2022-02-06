@@ -66,3 +66,11 @@ def send():
     phone = request.form["phone"]
     checkpoint = request.form["checkpoint"]
     location = request.form["location"]
+    if not users.id_exists():
+        if users.create_info(names, phone, checkpoint, location):
+            return render_template("checkpoint.html", message="Tiedot päivitetty!")
+        else:
+            return render_template("error.html", message="Virhe tallennettaessa tietoja.")
+    else:
+        #TODO: UPDATE
+        return redirect("/")

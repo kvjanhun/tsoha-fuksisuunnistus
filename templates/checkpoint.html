@@ -2,6 +2,10 @@
 {% block content %}
 
 <h2>Rastin tiedot:</h2>
+{% if message %}
+<h3>{{ message }}</h3>
+<a href="/own">Palaa rastin tietoihin</a>
+{% else %}
 <form action="/send" method="POST" class="user_info">
     <label form="names">Rastinvetäjien nimet:</label>
     <input type="text" id="names" name="names" value="{{ user_info[0] }}">
@@ -13,5 +17,5 @@
     <input type="text" id="location" name="location" value="{{ checkpoint_info[1] }}">
     <input type="submit" id="submit" value="Tallenna muutokset">
 </form>
-
+{% endif %}
 {% endblock %}
