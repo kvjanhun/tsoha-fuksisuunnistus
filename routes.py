@@ -45,3 +45,11 @@ def register():
         if not users.register(username, password1):
             return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")  
         return redirect("/")
+
+@app.route("/user")
+def user():
+    return render_template("user.html")
+
+@app.route("/groups")
+def groups():
+    return render_template("groups.html")

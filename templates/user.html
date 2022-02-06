@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% if session.user_id %}
+Tämä on nyt kenen tahansa käyttäjäsivu.
+
+Jukumoi.
+
+
+{% else %}
+Tänne pitäis kirjautua sisään tiäks.
+
+{% endif %}
+{% endblock %}

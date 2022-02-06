@@ -1,13 +1,16 @@
 <!doctype html>
-<link rel="stylesheet" href="/static/style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fuksisuunnistus</title>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fuksisuunnistus</title>
+</head>
 <header>
     <h1>Fuksisuunnistus</h1>
     <div class="links">
         <a href="/">Etusivu</a>
-        <a href="/">Sivusivu</a>
-        <a href="/">Takasivu</a>
+        <a href="/user">Oma rasti</a>
+        <a href="/groups">Joukkueet</a>
         {% if session.user_id %}
         <div id="logged">Kirjautunut: {{ session.user_name }}
             <a href="/logout">Kirjaudu ulos</a>
