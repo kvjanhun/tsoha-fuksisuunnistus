@@ -1,6 +1,33 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: cyan;
+}
+
 body {
     margin: auto;
-    max-width: 45em;
+    max-width: 60em;
+    padding: 0 1em 2em 1em;
     font-family: sans-serif;
-    background-color: #fff;
+    background-color: #eee;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+}
+
+header {
+    border-bottom: 1px #000 solid;
+    margin-bottom: 5px;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.content {
+    padding-top: 1em;
 }

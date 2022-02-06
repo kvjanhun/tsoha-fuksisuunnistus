@@ -2,6 +2,15 @@
 <link rel="stylesheet" href="/static/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fuksisuunnistus</title>
-<h1>Fuksisuunnistus</h1>
-<hr>
-{% block content %}{% endblock %}
+<header>
+    <h1>Fuksisuunnistus</h1>
+    <div class="links">
+        <a href="/">Etusivu</a>
+        <a href="/">Sivusivu</a>
+        <a href="/">Takasivu</a>
+    </div>
+</header>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
