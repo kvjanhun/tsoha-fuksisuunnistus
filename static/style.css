@@ -39,3 +39,17 @@ header {
 #logged a {
     margin-left: 1em;
 }
+
+.user_info {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.user_info input {
+    max-width: 20em;
+    margin-bottom: 10px;
+}
+
+.user_info #submit {
+    max-width: 12em;
+}

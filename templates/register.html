@@ -1,11 +1,10 @@
-
 {% extends "layout.html" %}
 {% block content %}
 
 <h2>Luo käyttäjätunnus</h2>
 
 <form action="/register" method="post">
-Tunnus: <br><input type="text" name="username" minlength="3">
+Tunnus: <br><input type="text" name="username" minlength="2" maxlength="30">
 <p>
 Salasana: <br><input type="password" name="password1">
 <p>

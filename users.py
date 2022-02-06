@@ -33,3 +33,14 @@ def register(name, password):
     except:
         return False
     return login(name, password)
+
+
+def user_info():
+    id = session["user_id"]
+    sql = "SELECT names, phone FROM user_info WHERE user_id=:id"
+    return db.session.execute(sql, {"id":id}).fetchone()
+
+def checkpoint_info():
+    id = session["user_id"]
+    sql = "SELECT theme, location FROM checkpoint WHERE user_id=:id"
+    return db.session.execute(sql, {"id":id}).fetchone()
