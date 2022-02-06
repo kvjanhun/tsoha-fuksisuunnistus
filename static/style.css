@@ -31,3 +31,11 @@ header {
 .content {
     padding-top: 1em;
 }
+
+#logged {
+    margin-left: auto;
+}
+
+#logged a {
+    margin-left: 1em;
+}

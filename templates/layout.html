@@ -8,6 +8,15 @@
         <a href="/">Etusivu</a>
         <a href="/">Sivusivu</a>
         <a href="/">Takasivu</a>
+        {% if session.user_id %}
+        <div id="logged">Kirjautunut: {{ session.user_name }}
+            <a href="/logout">Kirjaudu ulos</a>
+        </div>
+        {% else %}
+        <div id="logged">
+            <a href="/login">Kirjaudu sisään</a>
+        </div>
+        {% endif %}
     </div>
 </header>
 <div class="content">
