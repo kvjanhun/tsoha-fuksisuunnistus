@@ -47,4 +47,4 @@ Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettäv
 
 Toteutettu toiminnallisuus:
 * Käyttäjätunnusten luominen ja kirjautuminen
-* Rastin tietojen tallentaminen, jos tietoja ei ennestään ollut. Uusi käyttäjä voi Oma rasti -sivun kautta täyttää tiedot ja tallentaa ne tietokantaan. Muokattaessa tiedot eivät tallennu.
+* Rastin tietojen tallentaminen, jos tietoja ei ennestään ollut. Uusi käyttäjä voi Oma rasti -sivun kautta täyttää tiedot ja tallentaa ne tietokantaan. Tietoja voi myös muokata.
