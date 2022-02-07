@@ -64,13 +64,15 @@ def user():
 def send():
     names = request.form["names"]
     phone = request.form["phone"]
-    checkpoint = request.form["checkpoint"]
+    theme = request.form["theme"]
     location = request.form["location"]
     if not users.id_exists():
-        if users.create_info(names, phone, checkpoint, location):
+        if users.create_info(names, phone, theme, location):
             return render_template("checkpoint.html", message="Tiedot päivitetty!")
         else:
             return render_template("error.html", message="Virhe tallennettaessa tietoja.")
     else:
-        #TODO: UPDATE
-        return redirect("/")
+        if users.update_info(names, phone, theme, location):
+            return render_template("checkpoint.html", message="Tiedot päivitetty!")
+        else:
+            return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")

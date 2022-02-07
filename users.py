@@ -64,3 +64,17 @@ def create_info(names, phone, theme, location):
         return True
     except:
         return False
+
+def update_info(names, phone, theme, location):
+    try:
+        id = session["user_id"]
+        sql1 = """UPDATE user_info SET names=:names, phone=:phone 
+                WHERE user_id=:id"""
+        sql2 = """UPDATE checkpoint SET theme=:theme, location=:location
+                WHERE user_id=:id"""
+        db.session.execute(sql1, {"id":id, "names":names, "phone":phone})
+        db.session.execute(sql2, {"id":id, "theme":theme, "location":location})
+        db.session.commit()
+        return True
+    except:
+        return False
