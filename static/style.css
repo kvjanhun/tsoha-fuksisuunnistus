@@ -1,35 +1,47 @@
 a {
     text-decoration: none;
+    color: #ff4500;
 }
 
 a:hover {
-    color: cyan;
+    color: #ebb434;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     margin: auto;
+    min-height: 100vh;
     max-width: 60em;
-    padding: 0 1em 2em 1em;
-    font-family: sans-serif;
+    padding: 0 1em 0 1em;
     background-color: #eee;
-    border-style: solid;
-    border-color: #000;
-    border-width: 1px;
+    font-family: sans-serif;
 }
 
 header {
+    padding: 1em 1em 0 1em;
     border-bottom: 1px #000 solid;
-    margin-bottom: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+header a {
+    color: #eee;
 }
 
 .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1em;
 }
 
 .content {
-    padding-top: 1em;
+    flex-grow: 1;
+    padding: 1em 0 1em 1em;
+    background-color: #fff;
+    border-width: 0 1px 0 1px;
+    border-style: solid;
+    border-color: #333;
 }
 
 #logged {
@@ -52,4 +64,12 @@ header {
 
 .uinfo #submit {
     max-width: 12em;
+}
+
+footer {
+    padding: 1em;
+    border-top: 1px #000 solid;
+    background-color: #333;
+    color: #fff;
+    text-align: right;
 }

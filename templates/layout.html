@@ -5,24 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fuksisuunnistus</title>
 </head>
-<header>
-    <h1>Fuksisuunnistus</h1>
-    <div class="links">
-        <a href="/">Etusivu</a>
-        <a href="/own">Oma rasti</a>
-        <a href="/groups">Joukkueet</a>
-        {% if session.user_id %}
-        <div id="logged">Kirjautunut: {{ session.user_name }}
-            <a href="/logout">Kirjaudu ulos</a>
+<body>
+    <header>
+        <h1>Fuksisuunnistus</h1>
+        <div class="links">
+            <a href="/">Etusivu</a>
+            <a href="/own">Oma rasti</a>
+            <a href="/groups">Joukkueet</a>
+            {% if session.user_id %}
+            <div id="logged">Kirjautunut: {{ session.user_name }}
+                <a href="/logout">Kirjaudu ulos</a>
+            </div>
+            {% else %}
+            <div id="logged">
+                <a href="/login">Kirjaudu sisään</a>
+            </div>
+            {% endif %}
         </div>
-        {% else %}
-        <div id="logged">
-            <a href="/login">Kirjaudu sisään</a>
-        </div>
-        {% endif %}
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
     </div>
-</header>
-<div class="content">
-    {% block content %}
-    {% endblock %}
-</div>
+    
+    <footer>
+    © 2022
+    </footer>
+</body>
