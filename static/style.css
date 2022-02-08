@@ -37,7 +37,7 @@ header a {
 
 .content {
     flex-grow: 1;
-    padding: 1em 0 1em 1em;
+    padding: 1em;
     background-color: #fff;
     border-width: 0 1px 0 1px;
     border-style: solid;
