@@ -2,7 +2,9 @@
 {% block content %}
 
 {% if session.user_id %}
-Hienoa, olet kirjautunut ja voit tehdä asioita!
+<h2>Niin sitä pitää!</h2>
+Olet kirjautunut sisään ja voit tehdä asioita. 
+<br>
 Tällä hetkellä voit käydä Oma rasti -sivulla tallentamassa tiedot tietokantaan
 tai muokata tallentamiasi tietoja.
 <p>
@@ -10,7 +12,8 @@ Sovellus ei ole vielä tietoturvallinen CSRF-haavoittuvuuden osalta, istuntoa
 ei tarkisteta.
 
 {% else %}
-Morjes, tää on fuksisuunnistussovellus. Kantsii nopee kirjautuu sisään.
+<h2>Morjes!</h2>
+Tää on fuksisuunnistussovellus. Kantsii nopee kirjautuu sisään.
 Tunnuksen voit luoda kirjautumissivulla.
 {% endif %}
 {% endblock %}
