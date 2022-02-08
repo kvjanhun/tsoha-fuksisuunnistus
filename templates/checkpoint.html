@@ -6,7 +6,7 @@
 <h3>{{ message }}</h3>
 <a href="/own">Palaa rastin tietoihin</a>
 {% else %}
-<form action="/send" method="POST" class="user_info">
+<form action="/send" method="POST" class="uinfo">
     <label form="names">Rastinvetäjien nimet:</label>
     <input type="text" id="names" name="names" value="{{ user_info[0] }}">
     <label form="phone">Puhelinnumero:</label>

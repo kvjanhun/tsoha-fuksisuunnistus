@@ -40,16 +40,16 @@ header {
     margin-left: 1em;
 }
 
-.user_info {
+.uinfo {
     display: flex;
     flex-flow: column nowrap;
 }
 
-.user_info input {
+.uinfo input {
     max-width: 20em;
     margin-bottom: 10px;
 }
 
-.user_info #submit {
+.uinfo #submit {
     max-width: 12em;
 }

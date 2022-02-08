@@ -1,7 +1,8 @@
 import secrets
-from db import db
-from flask import redirect, session
+from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
+from db import db
+
 
 
 def login(name, password):
@@ -36,30 +37,30 @@ def register(name, password):
 
 
 def user_info():
-    id = session["user_id"]
+    uid = session["user_id"]
     sql = "SELECT names, phone FROM user_info WHERE user_id=:id"
-    return db.session.execute(sql, {"id":id}).fetchone()
+    return db.session.execute(sql, {"id":uid}).fetchone()
 
 def checkpoint_info():
-    id = session["user_id"]
+    uid = session["user_id"]
     sql = "SELECT theme, location FROM checkpoint WHERE user_id=:id"
-    return db.session.execute(sql, {"id":id}).fetchone()
+    return db.session.execute(sql, {"id":uid}).fetchone()
 
-def id_exists():
-    id = session["user_id"]
+def uid_exists():
+    uid = session["user_id"]
     sql = "SELECT COUNT(*) FROM user_info WHERE user_id=:id"
-    return db.session.execute(sql, {"id":id}).fetchone()[0] > 0
+    return db.session.execute(sql, {"id":uid}).fetchone()[0] > 0
     # Returns True if user_info table already contains session user id.
 
 def create_info(names, phone, theme, location):
     try:
-        id = session["user_id"]
+        uid = session["user_id"]
         sql1 = """INSERT INTO user_info (user_id, names, phone)
                 VALUES (:id, :names, :phone)"""
         sql2 = """INSERT INTO checkpoint (user_id, theme, location)
                 VALUES (:id, :theme, :location)"""
-        db.session.execute(sql1, {"id":id, "names":names, "phone":phone})
-        db.session.execute(sql2, {"id":id, "theme":theme, "location":location})
+        db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
+        db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
         db.session.commit()
         return True
     except:
@@ -67,13 +68,13 @@ def create_info(names, phone, theme, location):
 
 def update_info(names, phone, theme, location):
     try:
-        id = session["user_id"]
-        sql1 = """UPDATE user_info SET names=:names, phone=:phone 
+        uid = session["user_id"]
+        sql1 = """UPDATE user_info SET names=:names, phone=:phone
                 WHERE user_id=:id"""
         sql2 = """UPDATE checkpoint SET theme=:theme, location=:location
                 WHERE user_id=:id"""
-        db.session.execute(sql1, {"id":id, "names":names, "phone":phone})
-        db.session.execute(sql2, {"id":id, "theme":theme, "location":location})
+        db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
+        db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
         db.session.commit()
         return True
     except:

@@ -1,7 +1,7 @@
-from email import message
+from flask import redirect, render_template, request, session
 from app import app
 import users
-from flask import redirect, render_template, request, session
+
 
 @app.route("/")
 def index():
@@ -17,8 +17,8 @@ def login():
         password = request.form["password"]
 
         if not users.login(username, password):
-            return render_template("error.html", message="Juu ei.")
-        return redirect("/")        
+            return render_template("error.html", message="Kirjautuminen epäonnistui.")
+        return redirect("/")
 
 
 @app.route("/logout")
@@ -45,7 +45,7 @@ def register():
             return render_template("error.html", message="Kyl sul salasana pitää olla.")
 
         if not users.register(username, password1):
-            return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")  
+            return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")
         return redirect("/")
 
 @app.route("/groups",methods=["GET"])
@@ -66,7 +66,7 @@ def send():
     phone = request.form["phone"]
     theme = request.form["theme"]
     location = request.form["location"]
-    if not users.id_exists():
+    if not users.uid_exists():
         if users.create_info(names, phone, theme, location):
             return render_template("checkpoint.html", message="Tiedot päivitetty!")
         else:
