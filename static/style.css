@@ -1,10 +1,10 @@
 a {
     text-decoration: none;
-    color: #ff4500;
+    color: rgb(30, 170, 186);
 }
 
 a:hover {
-    color: #ebb434;
+    color: rgb(17, 82, 92);
 }
 
 body {
@@ -14,42 +14,59 @@ body {
     min-height: 100vh;
     max-width: 60em;
     padding: 0 1em 0 1em;
-    background-color: #eee;
-    font-family: sans-serif;
+    background-color: rgb(240, 245, 245);
+    font-family: Helvetica, Arial, sans-serif;
+    color: rgb(1, 11, 19);
 }
 
 header {
-    padding: 1em 1em 0 1em;
-    border-bottom: 1px #000 solid;
-    background-color: #333;
-    color: #fff;
+    background-color: rgb(30, 170, 186);
+    color: rgb(244, 243, 238);
 }
 
 header a {
-    color: #eee;
+    color: rgb(238, 238, 238);
 }
 
-.links {
+h1 {
+    margin-left: 1em;
+    padding: 20px 0 10px 0;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 2px rgb(1, 11, 19);
+}
+
+nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 1em;
+    padding: 0 1em 0 1em;
+    background-color: rgb(17, 82, 92);
+}
+
+nav a {
+    padding: 1em;
+    border-top:3px solid rgb(17, 82, 92);
+}
+
+nav a:hover {
+    background-color: rgb(50, 115, 125);
+    color: rgb(238, 238, 238);
+    border-top:3px solid rgb(243, 233, 233);
+}
+
+#logged {
+    margin: 3px 0 0 auto;
+    padding: 1em 0 1em 0;
+}
+
+#logged a {
+    margin: 0 0 0 1em;
 }
 
 .content {
     flex-grow: 1;
-    padding: 1em;
-    background-color: #fff;
-    border-width: 0 1px 0 1px;
-    border-style: solid;
-    border-color: #333;
-}
-
-#logged {
-    margin-left: auto;
-}
-
-#logged a {
-    margin-left: 1em;
+    padding: 1em 1em 1em 2em;
+    background-color: rgb(255, 255, 255);
 }
 
 .uinfo {
@@ -67,9 +84,8 @@ header a {
 }
 
 footer {
-    padding: 1em;
-    border-top: 1px #000 solid;
-    background-color: #333;
-    color: #fff;
+    padding: 10px 1em 10px 1em;
+    background-color: rgb(30, 170, 186);
+    color: rgb(255, 255, 255);
     text-align: right;
 }
