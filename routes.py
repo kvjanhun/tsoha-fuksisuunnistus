@@ -80,5 +80,8 @@ def send():
 
 @app.route("/checkpoints", methods=["GET"])
 def checkpoints():
-    checkpoints=users.get_checkpoints()
-    return render_template("checkpoint_admin_view.html", checkpoints=checkpoints)
+    if session.get("user_id"):
+        checkpoints=users.get_checkpoints()
+        return render_template("checkpoint_admin_view.html", checkpoints=checkpoints)
+    else:
+        return redirect("/login")
