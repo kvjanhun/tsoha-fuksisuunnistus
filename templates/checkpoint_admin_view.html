@@ -1,13 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
 <h2>Kaikki rastit</h2>
-<div class="checkpoint_container">
+<div class="all_checkpoint_container">
     {% for checkpoint in checkpoints.values() %}
-    <div id="child">
-        Nimet: {{ checkpoint[0] }}<br>
-        Numero: {{ checkpoint[1] }}<br>
-        Rasti: {{ checkpoint[2] }}<br>
-        Sijainti: {{ checkpoint[3] }}
+    <div id="single_checkpoint_container">
+        <h3>Rasti #</h3>
+        <div id="checkpoint_content">
+            <p><strong>Nimet:</strong>    {{ checkpoint[0] }}</p>
+            <p><strong>Numero:</strong>   {{ checkpoint[1] }}</p>
+            <p><strong>Rasti:</strong>    {{ checkpoint[2] }}</p>
+            <p><strong>Sijainti:</strong> {{ checkpoint[3] }}</p>
+        </div>
     </div>
     {% endfor %}
 </div>
