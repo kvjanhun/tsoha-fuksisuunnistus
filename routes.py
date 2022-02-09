@@ -80,5 +80,5 @@ def send():
 
 @app.route("/checkpoints", methods=["GET"])
 def checkpoints():
-    
-    return render_template("checkpoint_admin_view.html", lista=users.list_checkpoints())
+    checkpoints=users.get_checkpoints()
+    return render_template("checkpoint_admin_view.html", checkpoints=checkpoints)
