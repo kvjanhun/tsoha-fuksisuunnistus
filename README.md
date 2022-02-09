@@ -48,3 +48,4 @@ Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettäv
 Toteutettu toiminnallisuus:
 * Käyttäjätunnusten luominen ja kirjautuminen
 * Rastin tietojen tallentaminen, jos tietoja ei ennestään ollut. Uusi käyttäjä voi Oma rasti -sivun kautta täyttää tiedot ja tallentaa ne tietokantaan. Tietoja voi myös muokata.
+* Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit. Tällä hetkellä uudelle käyttäjälle ei automaattisesti luoda rastia, joten uuden käyttäjän tiedot tulevat näkyville vasta, kun jotain on tallennettu Oma rasti -sivulla. Tämä sivu tulee jossain muodossaan olemaan osa ylläpitäjänäkymää, mutta vielä käyttäjän statusta ei tarkasteta millään tapaa.

@@ -85,3 +85,4 @@ def checkpoints():
         return render_template("checkpoint_admin_view.html", checkpoints=checkpoints)
     else:
         return redirect("/login")
+        

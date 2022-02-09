@@ -86,3 +86,4 @@ def get_checkpoints():
     for checkpoint in db.session.execute(sql).fetchall():
         result[checkpoint[1]] = (checkpoint[2], checkpoint[3], checkpoint[6], checkpoint[7])
     return result
+    
