@@ -79,3 +79,10 @@ def update_info(names, phone, theme, location):
         return True
     except:
         return False
+
+def list_checkpoints():
+    sql = "SELECT * FROM user_info u, checkpoint c WHERE u.user_id=c.user_id"
+    result = {}
+    for checkpoint in db.session.execute(sql).fetchall():
+        result[checkpoint[1]] = (checkpoint[2], checkpoint[3], checkpoint[6], checkpoint[7])
+    return result

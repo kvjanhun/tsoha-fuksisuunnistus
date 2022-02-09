@@ -1,3 +1,4 @@
+from tabnanny import check
 from flask import redirect, render_template, request, session
 from app import app
 import users
@@ -76,3 +77,8 @@ def send():
             return render_template("checkpoint.html", message="Tiedot päivitetty!")
         else:
             return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
+
+@app.route("/checkpoints", methods=["GET"])
+def checkpoints():
+    
+    return render_template("checkpoint_admin_view.html", lista=users.list_checkpoints())

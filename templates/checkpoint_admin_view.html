@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Kaikki rastit</h2>
+<div class="checkpoint_container">
+    {% for checkpoint in lista.values() %}
+    <div id="child">
+        Nimet: {{ checkpoint[0] }}<br>
+        Numero: {{ checkpoint[1] }}<br>
+        Rasti: {{ checkpoint[2] }}<br>
+        Sijainti: {{ checkpoint[3] }}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
