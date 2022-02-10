@@ -91,3 +91,19 @@ def get_single_checkpoint(uid):
     sql = """SELECT * FROM user_info u, checkpoint c 
              WHERE u.user_id=:uid AND u.user_id=c.user_id"""
     return db.session.execute(sql, {"uid":uid}).fetchone()
+
+def get_valid_uids():
+    sql = "SELECT user_id FROM user_info"
+    query_result = db.session.execute(sql).fetchall()
+    result = []
+    for item in query_result:
+        result.append(item[0])
+    return result
+
+def get_valid_uids_with_names():
+    sql = "SELECT user_id, names FROM user_info"
+    query_result = db.session.execute(sql).fetchall()
+    result = []
+    for item in query_result:
+        result.append((item[0], item[1]))
+    return result

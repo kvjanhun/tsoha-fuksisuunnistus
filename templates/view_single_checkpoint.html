@@ -5,9 +5,9 @@
     <label for="view_checkpoint">Rasti:</label>
     <select name="view_checkpoint" id="view_checkpoint">
         <option value="">- Valitse -</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        {% for uid in uids %}
+        <option value="{{ uid[0] }}">{{ uid[0] }}: {{ uid[1] }}</option>
+        {% endfor %}
     </select>
     <button id="button">Näytä</button>
 </form>
