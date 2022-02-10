@@ -78,11 +78,18 @@ def send():
         else:
             return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
 
-@app.route("/checkpoints", methods=["GET"])
+@app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
     if session.get("user_id"):
         checkpoints=users.get_checkpoints()
-        return render_template("checkpoint_admin_view.html", checkpoints=checkpoints)
+        return render_template("checkpoint_overview.html", checkpoints=checkpoints)
     else:
         return redirect("/login")
-        
+
+@app.route("/checkpoint", methods=["GET"])
+def checkpoint():
+    if session.get("user_id"):
+        checkpoint=users.get_single_checkpoint(request.args.get("view_checkpoint"))
+        return render_template("view_single_checkpoint.html", checkpoint=checkpoint)
+    else:
+        return redirect("/login")

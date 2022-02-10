@@ -86,4 +86,8 @@ def get_checkpoints():
     for checkpoint in db.session.execute(sql).fetchall():
         result[checkpoint[1]] = (checkpoint[2], checkpoint[3], checkpoint[6], checkpoint[7])
     return result
-    
+
+def get_single_checkpoint(uid):
+    sql = """SELECT * FROM user_info u, checkpoint c 
+             WHERE u.user_id=:uid AND u.user_id=c.user_id"""
+    return db.session.execute(sql, {"uid":uid}).fetchone()
