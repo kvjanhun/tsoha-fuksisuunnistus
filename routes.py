@@ -93,6 +93,10 @@ def checkpoint():
     else:
         return redirect("/login")
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
 @app.route("/testi")
 def testi():
     return render_template("error.html", message=users.get_single_checkpoint(1))
