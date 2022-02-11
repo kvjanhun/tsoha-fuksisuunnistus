@@ -1,16 +1,16 @@
 {% if session.user_id %}
-<div id="logged">Kirjautunut: {{ session.user_name }}
+<div id="login_status">Kirjautunut: {{ session.user_name }}
     <a href="/logout">Kirjaudu ulos</a>
 </div>
 {% else %}
-<div id="logged">
-    <form action="/login" method="POST">
-        Tunnus: <br><input type="text" name="username">
-        <p>
-        Salasana: <br><input type="password" name="password">
-        <p>
+<div id="login_status">
+    <form action="/login" method="POST" id="login_items">
+        <label for ="username">Tunnus:</label>
+        <input type="text" name="username">
+        <label for ="password">Salasana:</label>
+        <input type="password" name="password">
         <input type="submit" value="Kirjaudu">
-        </form>
         <a href="/register">Luo uusi tunnus</a>
+        </form>
 </div>
 {% endif %} 
