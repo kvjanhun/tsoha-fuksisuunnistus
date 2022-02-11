@@ -4,12 +4,12 @@
 <div class="all_checkpoint_container">
     {% for checkpoint in checkpoints.values() %}
     <div id="single_checkpoint_container">
-        <h3>Rasti #</h3>
+        <h3>Rasti {{ checkpoint[0] }}</h3>
         <div id="checkpoint_content">
-            <p><strong>Nimet:</strong>    {{ checkpoint[0] }}</p>
-            <p><strong>Numero:</strong>   {{ checkpoint[1] }}</p>
-            <p><strong>Rasti:</strong>    {{ checkpoint[2] }}</p>
-            <p><strong>Sijainti:</strong> {{ checkpoint[3] }}</p>
+            <p><strong>Nimet:</strong>    {{ checkpoint[1] }}</p>
+            <p><strong>Numero:</strong>   {{ checkpoint[2] }}</p>
+            <p><strong>Rasti:</strong>    {{ checkpoint[3] }}</p>
+            <p><strong>Sijainti:</strong> {{ checkpoint[4] }}</p>
         </div>
     </div>
     {% endfor %}

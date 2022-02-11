@@ -81,29 +81,25 @@ def update_info(names, phone, theme, location):
         return False
 
 def get_checkpoints():
+    """Return a dict containing all checkpoints info, key=user_id"""
     sql = "SELECT * FROM user_info u, checkpoint c WHERE u.user_id=c.user_id"
-    result = {}
-    for checkpoint in db.session.execute(sql).fetchall():
-        result[checkpoint[1]] = (checkpoint[2], checkpoint[3], checkpoint[6], checkpoint[7])
-    return result
+    query_result = db.session.execute(sql).fetchall()
+    return {cp[1]:[cp[1], cp[2], cp[3], cp[6], cp[7]] for cp in query_result}
 
 def get_single_checkpoint(uid):
+    """Return single checkpoint info as sqlalchemy.engine.result.RowProxy"""
     sql = """SELECT * FROM user_info u, checkpoint c 
              WHERE u.user_id=:uid AND u.user_id=c.user_id"""
     return db.session.execute(sql, {"uid":uid}).fetchone()
 
 def get_valid_uids():
+    """Return a list of valid user_id integers"""
     sql = "SELECT user_id FROM user_info"
     query_result = db.session.execute(sql).fetchall()
-    result = []
-    for item in query_result:
-        result.append(item[0])
-    return result
+    return [item[0] for item in query_result]
 
 def get_valid_uids_with_names():
+    """Return a list of valid user_ids """
     sql = "SELECT user_id, names FROM user_info"
     query_result = db.session.execute(sql).fetchall()
-    result = []
-    for item in query_result:
-        result.append((item[0], item[1]))
-    return result
+    return [(item[0], item[1]) for item in query_result]

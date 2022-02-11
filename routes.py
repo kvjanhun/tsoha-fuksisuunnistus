@@ -97,4 +97,4 @@ def checkpoint():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=users.get_valid_uids_with_names())
+    return render_template("error.html", message=users.get_single_checkpoint(1))
