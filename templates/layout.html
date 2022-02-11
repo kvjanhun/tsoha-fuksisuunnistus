@@ -6,31 +6,9 @@
     <title>Fuksisuunnistus</title>
 </head>
 <body>
-    <header>
-        <h1>Fuksisuunnistus</h1>
-        <nav>
-            <a href="/">Etusivu</a>
-            <a href="/own">Oma rasti</a>
-            <a href="/groups">Joukkueet</a>
-            <a href="/admin">Ylläpitäjä</a>
-            {% if session.user_id %}
-            <div id="logged">Kirjautunut: {{ session.user_name }}
-                <a href="/logout">Kirjaudu ulos</a>
-            </div>
-            {% else %}
-            <div id="logged">
-                <a href="/login">Kirjaudu sisään</a>
-            </div>
-            {% endif %}
-        </nav>
-    </header>
-
+    {% include "header.html" %}
     <div class="content">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </div>
-    
-    <footer>
-        © 2022
-    </footer>
+    {% include "footer.html" %}
 </body>

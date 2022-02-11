@@ -1,15 +1,16 @@
-{% extends "layout.html" %}
-{% block content %}
-
-<h2>Sisäänkirjautuminen</h2>
-
-<form action="/login" method="POST">
-Tunnus: <br><input type="text" name="username">
-<p>
-Salasana: <br><input type="password" name="password">
-<p>
-<input type="submit" value="Kirjaudu">
-</form>
-<a href="/register">Luo uusi tunnus</a>
-
-{% endblock %}
+{% if session.user_id %}
+<div id="logged">Kirjautunut: {{ session.user_name }}
+    <a href="/logout">Kirjaudu ulos</a>
+</div>
+{% else %}
+<div id="logged">
+    <form action="/login" method="POST">
+        Tunnus: <br><input type="text" name="username">
+        <p>
+        Salasana: <br><input type="password" name="password">
+        <p>
+        <input type="submit" value="Kirjaudu">
+        </form>
+        <a href="/register">Luo uusi tunnus</a>
+</div>
+{% endif %} 
