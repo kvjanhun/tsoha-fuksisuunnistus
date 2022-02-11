@@ -3,8 +3,6 @@ from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
 
-
-
 def login(name, password):
     sql = "SELECT password, id, admin FROM users WHERE name=:name"
     result = db.session.execute(sql, {"name":name})

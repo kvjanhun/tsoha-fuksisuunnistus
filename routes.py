@@ -1,8 +1,6 @@
-from tabnanny import check
 from flask import redirect, render_template, request, session
 from app import app
 import users
-
 
 @app.route("/")
 def index():
