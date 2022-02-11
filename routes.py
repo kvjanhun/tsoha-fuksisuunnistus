@@ -88,7 +88,7 @@ def checkpoints():
 def checkpoint():
     if session.get("user_id"):
         checkpoint=users.get_single_checkpoint(request.args.get("view_checkpoint"))
-        return render_template("view_single_checkpoint.html", 
+        return render_template("view_single_checkpoint.html",
                                 checkpoint=checkpoint, uids=users.get_valid_uids_with_names())
     else:
         return redirect("/login")
