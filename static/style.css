@@ -30,6 +30,7 @@ header a {
 
 .upper_header {
     display: flex;
+    flex-wrap: wrap;
     min-height: 120px;
 }
 
