@@ -47,10 +47,10 @@ def checkpoint_info():
     return db.session.execute(sql, {"id":uid}).fetchone()
 
 def uid_exists():
+    """Returns True if user_info table already contains session user id."""
     uid = session["user_id"]
     sql = "SELECT COUNT(*) FROM user_info WHERE user_id=:id"
     return db.session.execute(sql, {"id":uid}).fetchone()[0] > 0
-    # Returns True if user_info table already contains session user id.
 
 def create_info(names, phone, theme, location):
     try:
