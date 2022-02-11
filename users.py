@@ -99,7 +99,7 @@ def get_valid_uids():
     return [item[0] for item in query_result]
 
 def get_valid_uids_with_names():
-    """Return a list of valid user_ids """
+    """Return a list of valid user_ids and the corresponding names"""
     sql = "SELECT user_id, names FROM user_info"
     query_result = db.session.execute(sql).fetchall()
     return [(item[0], item[1]) for item in query_result]
