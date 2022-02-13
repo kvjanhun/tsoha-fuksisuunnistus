@@ -4,12 +4,16 @@
 </div>
 {% else %}
 <div id="login_status">
-    <form action="/login" method="POST" id="login_items">
-        <label for ="username">Tunnus:</label>
-        <input type="text" name="username">
-        <label for ="password">Salasana:</label>
+    <form action="/login" method="POST" id="login_form">
+        <div>
+            <label for ="username">Tunnus</label>
+            <input type="text" name="username">
+        </div>
+        <div>
+        <label for ="password">Salasana</label>
         <input type="password" name="password">
-        <input type="submit" value="Kirjaudu">
+        </div>
+        <button type="submit">Kirjaudu</button>
         <a href="/register">Luo uusi tunnus</a>
         </form>
 </div>

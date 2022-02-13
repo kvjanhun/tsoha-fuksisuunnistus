@@ -61,22 +61,29 @@ nav a:hover {
 #login_status {
     display: flex;
     gap: 20px;
-    margin: auto 1em auto auto;
+    margin: auto 2em auto auto;
 }
 
-#login_items {
+#login_form {
     display: flex;
-    gap: 6px;
-    align-items: baseline;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    gap: 3px;
 }
 
-#login_items input[type=text], #login_items input[type=password] {
-    max-width: 5em;
+#login_form input[type=text], #login_form input[type=password] {
+    max-width: 6em;
+    height: 14px;
     border-radius: 5px;
 }
 
-#login_items input[type=submit] {
-    max-width: 5em;
+#login_form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 60px;
+    font-size: 11px;
 }
 
 .content {
