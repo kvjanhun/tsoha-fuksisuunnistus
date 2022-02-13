@@ -32,6 +32,7 @@ header a {
     display: flex;
     flex-wrap: wrap;
     min-height: 120px;
+    padding: 10px;
 }
 
 h1 {
