@@ -57,7 +57,7 @@ def user():
         return render_template("checkpoint.html", user_info=users.user_info(),
      checkpoint_info=users.checkpoint_info())
     else:
-        return redirect("/login")
+        return redirect("/")
 
 @app.route("/send",methods=["POST"])
 def send():
@@ -82,7 +82,7 @@ def checkpoints():
         checkpoints=users.get_checkpoints()
         return render_template("checkpoint_overview.html", checkpoints=checkpoints)
     else:
-        return redirect("/login")
+        return redirect("/")
 
 @app.route("/checkpoint", methods=["GET"])
 def checkpoint():
@@ -91,11 +91,14 @@ def checkpoint():
         return render_template("view_single_checkpoint.html",
                                 checkpoint=checkpoint, uids=users.get_valid_uids_with_names())
     else:
-        return redirect("/login")
+        return redirect("/")
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    if session.get("user_id"):
+        return render_template("admin.html")
+    else:
+        return redirect("/")
 
 @app.route("/testi")
 def testi():
