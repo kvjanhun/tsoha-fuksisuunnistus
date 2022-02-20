@@ -16,6 +16,7 @@
     <label form="location">Rastin sijainti:</label>
     <input type="text" id="location" name="location" value="{{ checkpoint_info[1] }}">
     <input type="submit" id="submit" value="Tallenna muutokset">
+    <input type="hidden" name="token" value="{{ session.token }}">
 </form>
 {% endif %}
 {% endblock %}

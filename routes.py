@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, abort
 from app import app
 import users
 
@@ -76,7 +76,9 @@ def user(uid):
     return redirect("/")
 
 @app.route("/send_checkpoint",methods=["POST"])
-def send():
+def send_checkpoint():
+    if session["token"] != request.form["token"]:
+        abort(403)
     names = request.form["names"]
     phone = request.form["phone"]
     theme = request.form["theme"]
