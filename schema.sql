@@ -21,7 +21,14 @@ CREATE TABLE checkpoint (
 
 CREATE TABLE groups (
     id SERIAL PRIMARY KEY,
-    name TEXT,
-    size INTEGER,
-    points INTEGER
+    name TEXT
 );
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    groups_id INTEGER REFERENCES groups,
+    checkpoint_id INTEGER REFERENCES checkpoint,
+    points INTEGER,
+    review TEXT
+);
+
