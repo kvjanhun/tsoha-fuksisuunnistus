@@ -61,6 +61,7 @@ Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettäv
 #### Ominaisuudet vielä työn alla:
 * Joukkueiden lisääminen.
 * Joukkueiden arvosteleminen.
+* Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan.
 * Käyttöliittymän johdonmukaistaminen.
 * Parempi lomakkeiden käsittely (tiedot eivät katoa virhetilanteessa, virheilmoitukset paremmin näkyviin)
 * Ylläpitäjälle mahdollisuus muokata käyttäjien tietoja.
