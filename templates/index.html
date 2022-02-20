@@ -4,16 +4,20 @@
 {% if session.user_id %}
 <h2>Niin sitä pitää!</h2>
 Olet kirjautunut sisään ja voit tehdä asioita. 
-<br>
-Tällä hetkellä voit käydä Oma rasti -sivulla tallentamassa tiedot tietokantaan
-tai muokata tallentamiasi tietoja.
 <p>
-Sovellus ei ole vielä tietoturvallinen CSRF-haavoittuvuuden osalta, istuntoa 
-ei tarkisteta.
-
+Tällä hetkellä voit:<ul>
+<li>Oma rasti -sivulla tarkastelemassa kirjautuneen
+    käyttäjän rastin tietoja tai muokkaamassa niitä.
+</li>
+<li>Ylläpitäjä-sivulla tarkastella kaikkia rasteja
+    listana tai yksittäin. Ylläpitäjänä muokkaaminen
+    ei ole vielä toteutettu.
+</li>
+</ul>
+<p>
 {% else %}
-<h2>Morjes!</h2>
-Tää on fuksisuunnistussovellus. Kantsii nopee kirjautuu sisään.
-Tunnuksen voit luoda kirjautumissivulla.
+<h2>Kirjaudu sisään</h2>
+Sovelluksen käyttäminen vaatii sisäänkirjautumisen. Kirjaudu
+sisään tai <a href="/register">luo tunnus</a>.
 {% endif %}
 {% endblock %}
