@@ -6,6 +6,8 @@
     <nav>
         <a href="/">Etusivu</a>
         <a href="/user">Oma rasti</a>
+        {% if session.admin %}
         <a href="/admin">Ylläpitäjä</a>
+        {% endif %}
     </nav>
 </header>
