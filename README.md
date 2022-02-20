@@ -12,16 +12,14 @@ Sovellus toimii välineenä rastinvetäjille TKO-älyn fuksisuunnistussuorituste
 Sovellus on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
 
 ### Kuvaus
-Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Käyttäjän roolissa toimivat rastinvetäjät, ylläpitäjätunnusta käyttävät tuutorivastaavat. Rasteja kiertävät ryhmät kirjataan tuutorivastaavien toimesta sovellukseen lähdössä, mutta suunnistajat eivät toimi sovelluksen käyttäjinä. Tuutorivastaavilla on ennalta suunniteltu reitti ja he kertovat ryhmän ensimmäisen rastin sijainnin ryhmälle. Rastinvetäjät kertovat ryhmälle seuraavan sijainnin. Rastinvetäjät lisäävät suorituksen valiten listasta ryhmän, täyttäen pisteytyskentät ja kirjoittamalla lyhyen sanallisen kuvauksen (vapaaehtoinen).
+Sovellukseen kirjaudutaan sisään luodulla tunnuksella. Käyttäjän roolissa toimivat rastinvetäjät, ylläpitäjätunnusta käyttävät tuutorivastaavat. Ylläpitäjän rooli asetetaan tietokantaan suoraan, sillä tarve on käytännössä vain yhdelle ylläpitäjätunnukselle. Rasteja kiertävät ryhmät kirjataan tuutorivastaavien toimesta sovellukseen lähdössä, mutta suunnistajat eivät toimi sovelluksen käyttäjinä. Tuutorivastaavilla on ennalta suunniteltu reitti ja he kertovat ryhmän ensimmäisen rastin sijainnin ryhmälle. Rastinvetäjät kertovat ryhmälle seuraavan sijainnin. Rastinvetäjät lisäävät suorituksen valiten listasta ryhmän, täyttäen pisteytyskentät ja kirjoittamalla lyhyen sanallisen kuvauksen (vapaaehtoinen).
 
 #### Ylläpitäjä (tuutorivastaavat):
 * Yksi tili, vaikka ylläpitäjiä olisi useampia
-* Hallinnoi käyttäjiä (rasteja)
-  * Lisää käyttäjät
+* Hallinnoi käyttäjiä
   * Pystyy poistamaan käyttäjän
   * Pystyy muokkaamaan käyttäjien tietoja
 * Näkee kaikkien käyttäjien tiedot
-  * listattuna kohdassa [Käyttäjä](https://github.com/kvjanhun/tsoha-fuksisuunnistus#k%C3%A4ytt%C3%A4j%C3%A4-rastinvet%C3%A4j%C3%A4t)
 * Lisää suunnistuksen aluksi suunnistavat ryhmät sovellukseen
   * Ryhmän nimi
   * Ryhmän koko
@@ -37,10 +35,10 @@ Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Kä
   * Rastin sijainti
   * Montako suoritusta kirjattu
   * Seuraavan rastin sijainti, vetäjät ja puhelinnumero
-* Pystyy muokkaamaan rastinsa sijaintia
+* Pystyy muokkaamaan rastinsa tietoja
 * Pystyy lisäämään suunnistusryhmien suorituksia rastilleen
   * Pystyy muokkaamaan suorituksia
-* Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia
+* Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia, vain järjestyksessä seuraavan rastin sijainnin ja vetäjät
 
 ### Nykytilanne
 Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
