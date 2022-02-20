@@ -53,6 +53,7 @@ Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettäv
 
 #### Muutokset edellisestä välipalautuksesta:
 * Kirjautumislomake upotettu yläpalkkiin.
+* Rekisteröityessä valittavissa ylläpitäjän käyttäjärooli. Tämä on väliaikainen testiominaisuus. Varsinaisessa käytössä kaikki rekisteröityvät tavallisina käyttäjinä. Ylläpitäjän oikeudet voi asettaa vain suoraan tietokantakyselyllä.
 * Oma rasti -linkki ja reitti /user/<user_id> luotu. Oma rasti -sivulla erikseen rastin tietojen katselu ja muokkaus, ennen vain muokkaus.
 * SQL-skeemaa muutettu joukkueiden osalta, luotu erillinen taulu arviointeja varten.
 * Rastin tietoja lähetettäessä tarkastetaan istunnon poletti (token).
