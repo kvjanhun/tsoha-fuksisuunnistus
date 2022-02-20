@@ -45,7 +45,20 @@ Sovellukseen kirjaudutaan sisään joko ylläpitäjänä tai käyttäjänä. Kä
 ### Nykytilanne
 Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
 
-Toteutettu toiminnallisuus:
+#### Toteutettu toiminnallisuus:
 * Käyttäjätunnusten luominen ja kirjautuminen
 * Rastin tietojen tallentaminen, jos tietoja ei ennestään ollut. Uusi käyttäjä voi Oma rasti -sivun kautta täyttää tiedot ja tallentaa ne tietokantaan. Tietoja voi myös muokata.
-* Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit. Tällä hetkellä uudelle käyttäjälle ei automaattisesti luoda rastia, joten uuden käyttäjän tiedot tulevat näkyville vasta, kun jotain on tallennettu Oma rasti -sivulla. Tämä sivu tulee jossain muodossaan olemaan osa ylläpitäjänäkymää, mutta vielä käyttäjän statusta ei tarkasteta millään tapaa.
+* Ylläpitäjän Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit. Tällä hetkellä uudelle käyttäjälle ei automaattisesti luoda rastia, joten uuden käyttäjän tiedot tulevat näkyville vasta, kun jotain on tallennettu Oma rasti -sivulla. 
+* Yksittäisten rastien tarkastelu Ylläpitäjä-sivulla.
+
+#### Muutokset edellisestä välipalautuksesta:
+* Kirjautumislomake upotettu yläpalkkiin.
+* Oma rasti -linkki ja reitti /user/<user_id> luotu. Oma rasti -sivulla erikseen rastin tietojen katselu ja muokkaus, ennen vain muokkaus.
+* SQL-skeemaa muutettu joukkueiden osalta, luotu erillinen taulu arviointeja varten.
+* Rastin tietoja lähetettäessä tarkastetaan istunnon poletti (token).
+
+#### Ominaisuudet vielä työn alla:
+* Joukkueiden lisääminen.
+* Joukkueiden arvosteleminen.
+* Käyttöliittymän johdonmukaistaminen.
+* Parempi lomakkeiden käsittely (tiedot eivät katoa virhetilanteessa, virheilmoitukset paremmin näkyviin)
