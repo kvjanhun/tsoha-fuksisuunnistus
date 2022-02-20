@@ -19,7 +19,6 @@ def login():
             return render_template("error.html", message="Kirjautuminen epäonnistui.")
         return redirect("/")
 
-
 @app.route("/logout")
 def logout():
     users.logout()
@@ -51,15 +50,32 @@ def register():
 def groups():
     return render_template("groups.html")
 
-@app.route("/own",methods=["GET"])
-def user():
+@app.route("/edit_checkpoint",methods=["GET"])
+def own():
     if session.get("user_id"):
-        return render_template("checkpoint.html", user_info=users.user_info(),
-     checkpoint_info=users.checkpoint_info())
+        return render_template("edit_checkpoint.html", user_info=users.user_info(),
+        checkpoint_info=users.checkpoint_info())
     else:
         return redirect("/")
 
-@app.route("/send",methods=["POST"])
+@app.route("/user",methods=["GET"])
+def user_redirect():
+    if users.is_user():
+        uid = str(users.get_uid())
+        return redirect("/user/"+uid)
+    else:
+        return redirect("/")
+
+@app.route("/user/<int:uid>",methods=["GET"])
+def user(uid):
+    if users.is_user():
+        if users.get_uid() == uid:
+            return render_template("view_single_checkpoint.html", 
+                                    checkpoint=users.get_single_checkpoint(uid),
+                                    select=False)
+    return redirect("/")
+
+@app.route("/send_checkpoint",methods=["POST"])
 def send():
     names = request.form["names"]
     phone = request.form["phone"]
@@ -67,12 +83,12 @@ def send():
     location = request.form["location"]
     if not users.uid_exists():
         if users.create_info(names, phone, theme, location):
-            return render_template("checkpoint.html", message="Tiedot päivitetty!")
+            return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
         else:
             return render_template("error.html", message="Virhe tallennettaessa tietoja.")
     else:
         if users.update_info(names, phone, theme, location):
-            return render_template("checkpoint.html", message="Tiedot päivitetty!")
+            return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
         else:
             return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
 
@@ -89,7 +105,9 @@ def checkpoint():
     if session.get("user_id"):
         checkpoint=users.get_single_checkpoint(request.args.get("view_checkpoint"))
         return render_template("view_single_checkpoint.html",
-                                checkpoint=checkpoint, uids=users.get_valid_uids_with_names())
+                                checkpoint=checkpoint, 
+                                uids=users.get_valid_uids_with_names(),
+                                select=True)
     else:
         return redirect("/")
 
@@ -102,4 +120,7 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=users.get_single_checkpoint(1))
+    return render_template("error.html", message=str(session.get("user_id"))+" "
+    +str(users.is_admin())+" "
+    +str(session.get("user_role"))+" "
+    +str(session.get("token")))

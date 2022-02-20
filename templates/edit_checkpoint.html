@@ -4,9 +4,9 @@
 <h2>Rastin tiedot</h2>
 {% if message %}
 <h2>{{ message }}</h2>
-<a href="/own">Palaa rastin tietoihin</a>
+<a href="/user/{{ session.user_id }}">Palaa rastin tietoihin</a>
 {% else %}
-<form action="/send" method="POST" class="uinfo">
+<form action="/send_checkpoint" method="POST" class="uinfo">
     <label form="names">Rastinvetäjien nimet:</label>
     <input type="text" id="names" name="names" value="{{ user_info[0] }}">
     <label form="phone">Puhelinnumero:</label>

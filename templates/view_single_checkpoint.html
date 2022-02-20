@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2>Valitun rastin tiedot</h2>
+<h2>Rastin tiedot</h2>
+{% if select %}
 <form>
     <label for="view_checkpoint">Rasti:</label>
     <select name="view_checkpoint" id="view_checkpoint">
@@ -11,6 +12,7 @@
     </select>
     <button id="button">Näytä</button>
 </form>
+{% endif %}
 <div class="all_checkpoint_container">
     <div id="single_checkpoint_container">
         <h3>Rasti {{ checkpoint[1] }}</h3>
@@ -21,5 +23,6 @@
             <p><strong>Sijainti:</strong> {{ checkpoint[7] }}</p>
         </div>
     </div>
+    <a href="/edit_checkpoint">Muokkaa rastin tietoja</a>
 </div>
 {% endblock %}

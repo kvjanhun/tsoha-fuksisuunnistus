@@ -14,13 +14,14 @@ def login(name, password):
     session["user_id"] = user[1]
     session["user_name"] = name
     session["user_role"] = user[2]
-    session["csrf_token"] = secrets.token_hex(32)
+    session["token"] = secrets.token_hex(32)
     return True
 
 def logout():
     del session["user_id"]
     del session["user_name"]
     del session["user_role"]
+    del session["token"]
 
 def register(name, password):
     hash_value = generate_password_hash(password)
@@ -33,6 +34,14 @@ def register(name, password):
         return False
     return login(name, password)
 
+def get_uid():
+    return session.get("user_id", False)
+
+def is_user():
+    return get_uid() is not False
+
+def is_admin():
+    return session.get("user_role", False)
 
 def user_info():
     uid = session["user_id"]
