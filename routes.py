@@ -41,8 +41,18 @@ def register():
             return render_template("error.html", message="Salasanat ovat erit.")
         if password1 == "":
             return render_template("error.html", message="Kyl sul salasana pitää olla.")
+        
+        # admin_status selector for development and demonstration purposes
+        #   needs to be removed from:
+        #   -   parameters below
+        #   -   users.register(as_a_param)
+        #   -   register.html
+        if request.form.getlist("admin_cb"):
+            admin_status = True
+        else:
+            admin_status = False
 
-        if not users.register(username, password1):
+        if not users.register(username, password1, admin_status):
             return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")
         return redirect("/")
 

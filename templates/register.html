@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-
 <h2>Luo käyttäjätunnus</h2>
-
-<form action="/register" method="post">
+<form action="/register" method="POST">
 Tunnus: <br><input type="text" name="username" minlength="2" maxlength="30">
 <p>
 Salasana: <br><input type="password" name="password1">
@@ -11,9 +9,7 @@ Salasana: <br><input type="password" name="password1">
 Salasana uudelleen: <br><input type="password" name="password2">
 <p>
 <input type="submit" value="Luo tunnus">
+<input type="checkbox" id="admin_cb" name="admin_cb" value="True">
+<label for="admin-cb">Tee tunnuksesta ylläpitäjä</label><br>
 </form>
-
-<p>
-<a href="/login">Takaisin kirjautumissivulle</a>
-
 {% endblock %}

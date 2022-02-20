@@ -13,23 +13,29 @@ def login(name, password):
         return False
     session["user_id"] = user[1]
     session["user_name"] = name
-    session["user_role"] = user[2]
+    session["admin"] = user[2]
     session["token"] = secrets.token_hex(32)
     return True
 
 def logout():
     del session["user_id"]
     del session["user_name"]
-    del session["user_role"]
+    del session["admin"]
     del session["token"]
 
-def register(name, password):
+def register(name, password, admin_status):
     hash_value = generate_password_hash(password)
     try:
-        sql = """INSERT INTO users (name, password, admin)
+        if admin_status is True:
+            sql = """INSERT INTO users (name, password, admin)
+                 VALUES (:name, :password, TRUE)"""
+            db.session.execute(sql, {"name":name, "password":hash_value})
+            db.session.commit()
+        else:
+            sql = """INSERT INTO users (name, password, admin)
                  VALUES (:name, :password, FALSE)"""
-        db.session.execute(sql, {"name":name, "password":hash_value})
-        db.session.commit()
+            db.session.execute(sql, {"name":name, "password":hash_value})
+            db.session.commit()
     except:
         return False
     return login(name, password)
@@ -41,7 +47,7 @@ def is_user():
     return get_uid() is not False
 
 def is_admin():
-    return session.get("user_role", False)
+    return session.get("admin", False)
 
 def user_info():
     uid = session["user_id"]
