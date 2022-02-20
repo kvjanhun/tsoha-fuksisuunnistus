@@ -111,6 +111,10 @@ def checkpoint():
     else:
         return redirect("/")
 
+@app.route("/groups_overview",methods=["GET"])
+def groups_overview():
+    return render_template("groups.html")
+
 @app.route("/admin")
 def admin():
     if session.get("user_id"):
