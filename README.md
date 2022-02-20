@@ -63,3 +63,4 @@ Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettäv
 * Joukkueiden arvosteleminen.
 * Käyttöliittymän johdonmukaistaminen.
 * Parempi lomakkeiden käsittely (tiedot eivät katoa virhetilanteessa, virheilmoitukset paremmin näkyviin)
+* Ylläpitäjälle mahdollisuus muokata käyttäjien tietoja.
