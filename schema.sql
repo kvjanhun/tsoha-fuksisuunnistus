@@ -15,6 +15,7 @@ CREATE TABLE user_info (
 CREATE TABLE checkpoint (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
+    ordinal INTEGER,
     theme TEXT,
     location TEXT
 );
