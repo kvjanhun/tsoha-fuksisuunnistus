@@ -10,6 +10,5 @@ def create_team(name):
         return False
 
 def get_teams():
-    sql = "SELECT * FROM teams"
+    sql = "SELECT * FROM groups"
     return db.session.execute(sql).fetchall()
-

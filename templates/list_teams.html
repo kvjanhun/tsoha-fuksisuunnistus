@@ -1,12 +1,12 @@
 <div class="teams_container">
-    {% for team in teams %}
+    {% for team in teamlist %}
     <div id="single_team_container">
-        <h3>Ryhmä {{ team[0] }}</h3>
         <div id="team_content">
-            <p>
-                <strong>Nimi:</strong>{{ team[1] }}
-                <a href="">Poista</a>
-            </p>
+            <strong>Joukkue: </strong> {{ team[0] }}
+            <br>
+            <strong>Nimi:</strong>{{ team[1] }}
+            <a href="#">Poista</a>
         </div>
     </div>
     {% endfor %}
+</div>

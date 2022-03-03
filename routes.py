@@ -117,19 +117,23 @@ def checkpoint():
     else:
         return redirect("/")
 
-@app.route("/teams",methods=["GET", "POST"])
-def team_page():
+@app.route("/teams_overview",methods=["GET","POST"])
+def teams_overview():
+    if request.method == "GET":
+        return render_template("teams.html", teamlist=teams.get_teams())
+
     if request.method == "POST":
         if session["token"] != request.form["token"]:
             abort(403)
         name = request.form["name"]
         if teams.create_team(name):
-            return render_template("teams.html", message="Joukkue lisätty!")
+            return render_template("teams.html",
+                                    teamlist=teams.get_teams(),
+                                    message="Joukkue lisätty!")
         else:
-            return render_template("teams.html", message="Jokin meni pieleen :))")
-
-    if request.method == "GET":
-        return render_template("teams.html", teams=teams.get_teams())
+            return render_template("teams.html",
+                                    teamlist=teams.get_teams(),
+                                    message="Jokin meni pieleen :))")
 
 @app.route("/admin")
 def admin():
@@ -140,4 +144,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message="")
+    return render_template("error.html", message=teams.get_teams())
