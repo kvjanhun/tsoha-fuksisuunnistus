@@ -1,4 +1,5 @@
 import secrets
+from tabnanny import check
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
@@ -65,15 +66,21 @@ def uid_exists():
     sql = "SELECT COUNT(*) FROM user_info WHERE user_id=:id"
     return db.session.execute(sql, {"id":uid}).fetchone()[0] > 0
 
+def checkpoint_count():
+    sql = "SELECT COUNT(*) FROM checkpoint"
+    return db.session.execute(sql).fetchone()[0]
+
 def create_info(names, phone, theme, location):
     try:
         uid = session["user_id"]
+        next_ordinal = checkpoint_count() + 1
         sql1 = """INSERT INTO user_info (user_id, names, phone)
                 VALUES (:id, :names, :phone)"""
-        sql2 = """INSERT INTO checkpoint (user_id, theme, location)
-                VALUES (:id, :theme, :location)"""
+        sql2 = """INSERT INTO checkpoint (user_id, theme, location, ordinal)
+                VALUES (:id, :theme, :location, :ordinal)"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
-        db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
+        db.session.execute(sql2, {"id":uid, "theme":theme, "location":location,
+                                  "ordinal":next_ordinal})
         db.session.commit()
         return True
     except:

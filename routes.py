@@ -135,4 +135,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=users.get_user_info())
+    return render_template("error.html", message=type(users.checkpoint_count()))
