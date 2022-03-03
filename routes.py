@@ -1,6 +1,7 @@
 from flask import redirect, render_template, request, session, abort
 from app import app
 import users
+import teams
 
 @app.route("/")
 def index():
@@ -56,9 +57,9 @@ def register():
             return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")
         return redirect("/")
 
-@app.route("/groups",methods=["GET"])
-def groups():
-    return render_template("groups.html")
+@app.route("/teams",methods=["GET"])
+def teams_route():
+    return render_template("teams.html")
 
 @app.route("/edit_checkpoint",methods=["GET"])
 def own():
@@ -84,15 +85,15 @@ def user(uid):
                                     select=False)
     return redirect("/")
 
-@app.route("/send_group",methods=["POST"])
-def send_group():
+@app.route("/send_team",methods=["POST"])
+def send_team():
     if session["token"] != request.form["token"]:
         abort(403)
     name = request.form["name"]
-    if users.create_group(name):
-        return render_template("groups.html", message="Joukkue lisätty!")
+    if teams.create_team(name):
+        return render_template("teams.html", message="Joukkue lisätty!")
     else:
-        return render_template("groups.html", message="Jokin meni pieleen :))")
+        return render_template("teams.html", message="Jokin meni pieleen :))")
 
 @app.route("/send_checkpoint",methods=["POST"])
 def send_checkpoint():
@@ -126,9 +127,9 @@ def checkpoint():
     else:
         return redirect("/")
 
-@app.route("/groups_overview",methods=["GET"])
-def groups_overview():
-    return render_template("groups.html")
+@app.route("/teams",methods=["GET"])
+def teams_overview():
+    return render_template("teams.html", teams=teams.get_teams())
 
 @app.route("/admin")
 def admin():
@@ -139,4 +140,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=type(users.checkpoint_count()))
+    return render_template("error.html", message="")
