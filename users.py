@@ -15,6 +15,9 @@ def login(name, password):
     session["user_name"] = name
     session["admin"] = user[2]
     session["token"] = secrets.token_hex(32)
+    if not get_user_info():
+        create_info("rastinvetäjien nimet", "puhelinnumero",
+                    "rastinne nimi", "rastinne sijainti")
     return True
 
 def logout():
