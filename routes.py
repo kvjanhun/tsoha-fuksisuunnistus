@@ -85,16 +85,6 @@ def user(uid):
                                     select=False)
     return redirect("/")
 
-@app.route("/send_team",methods=["POST"])
-def send_team():
-    if session["token"] != request.form["token"]:
-        abort(403)
-    name = request.form["name"]
-    if teams.create_team(name):
-        return render_template("teams.html", message="Joukkue lisätty!")
-    else:
-        return render_template("teams.html", message="Jokin meni pieleen :))")
-
 @app.route("/send_checkpoint",methods=["POST"])
 def send_checkpoint():
     if session["token"] != request.form["token"]:
@@ -127,9 +117,19 @@ def checkpoint():
     else:
         return redirect("/")
 
-@app.route("/teams",methods=["GET"])
-def teams_overview():
-    return render_template("teams.html", teams=teams.get_teams())
+@app.route("/teams",methods=["GET", "POST"])
+def team_page():
+    if request.method == "POST":
+        if session["token"] != request.form["token"]:
+            abort(403)
+        name = request.form["name"]
+        if teams.create_team(name):
+            return render_template("teams.html", message="Joukkue lisätty!")
+        else:
+            return render_template("teams.html", message="Jokin meni pieleen :))")
+
+    if request.method == "GET":
+        return render_template("teams.html", teams=teams.get_teams())
 
 @app.route("/admin")
 def admin():
