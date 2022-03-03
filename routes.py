@@ -84,6 +84,16 @@ def user(uid):
                                     select=False)
     return redirect("/")
 
+@app.route("/send_group",methods=["POST"])
+def send_group():
+    if session["token"] != request.form["token"]:
+        abort(403)
+    name = request.form["name"]
+    if users.create_group(name):
+        return render_template("groups.html", message="Joukkue lisätty!")
+    else:
+        return render_template("groups.html", message="Jokin meni pieleen :))")
+
 @app.route("/send_checkpoint",methods=["POST"])
 def send_checkpoint():
     if session["token"] != request.form["token"]:

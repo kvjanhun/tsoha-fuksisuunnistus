@@ -123,3 +123,12 @@ def get_valid_uids_with_names():
     sql = "SELECT user_id, names FROM user_info"
     query_result = db.session.execute(sql).fetchall()
     return [(item[0], item[1]) for item in query_result]
+
+def create_group(name):
+    try:
+        sql = "INSERT INTO groups (name) VALUES (:name)"
+        db.session.execute(sql, {"name":name})
+        db.session.commit()
+        return True
+    except:
+        return False
