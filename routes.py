@@ -92,16 +92,10 @@ def send_checkpoint():
     phone = request.form["phone"]
     theme = request.form["theme"]
     location = request.form["location"]
-    if not users.uid_exists():
-        if users.create_info(names, phone, theme, location):
-            return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
-        else:
-            return render_template("error.html", message="Virhe tallennettaessa tietoja.")
+    if users.update_info(names, phone, theme, location):
+        return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
     else:
-        if users.update_info(names, phone, theme, location):
-            return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
-        else:
-            return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
+        return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
 
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
