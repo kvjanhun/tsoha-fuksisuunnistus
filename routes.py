@@ -63,8 +63,7 @@ def groups():
 @app.route("/edit_checkpoint",methods=["GET"])
 def own():
     if session.get("user_id"):
-        return render_template("edit_checkpoint.html", user_info=users.user_info(),
-        checkpoint_info=users.checkpoint_info())
+        return render_template("edit_checkpoint.html", user_info=users.get_user_info())
     else:
         return redirect("/")
 
@@ -136,7 +135,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=str(session.get("user_id"))+" "
-    +str(users.is_admin())+" "
-    +str(session.get("user_role"))+" "
-    +str(session.get("token")))
+    return render_template("error.html", message=users.get_user_info())

@@ -12,9 +12,9 @@
     <label form="phone">Puhelinnumero:</label>
     <input type="text" id="phone" name="phone" value="{{ user_info[1] }}">
     <label form="theme">Rastin kuvaus:</label>
-    <input type="text" id="theme" name="theme" value="{{ checkpoint_info[0] }}">
+    <input type="text" id="theme" name="theme" value="{{ user_info[2] }}">
     <label form="location">Rastin sijainti:</label>
-    <input type="text" id="location" name="location" value="{{ checkpoint_info[1] }}">
+    <input type="text" id="location" name="location" value="{{ user_info[3] }}">
     <input type="submit" id="submit" value="Tallenna muutokset">
     <input type="hidden" name="token" value="{{ session.token }}">
 </form>

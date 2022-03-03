@@ -49,14 +49,11 @@ def is_user():
 def is_admin():
     return session.get("admin", False)
 
-def user_info():
+def get_user_info():
     uid = session["user_id"]
-    sql = "SELECT names, phone FROM user_info WHERE user_id=:id"
-    return db.session.execute(sql, {"id":uid}).fetchone()
-
-def checkpoint_info():
-    uid = session["user_id"]
-    sql = "SELECT theme, location FROM checkpoint WHERE user_id=:id"
+    sql = """SELECT names, phone, theme, location
+             FROM user_info u, checkpoint c
+             WHERE u.user_id = c.user_id AND u.user_id=:id;"""
     return db.session.execute(sql, {"id":uid}).fetchone()
 
 def uid_exists():
