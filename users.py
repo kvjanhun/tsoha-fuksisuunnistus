@@ -1,5 +1,4 @@
 import secrets
-from tabnanny import check
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
@@ -43,6 +42,11 @@ def register(name, password, admin_status):
     except:
         return False
     return login(name, password)
+
+def username_exists(username):
+    sql = "SELECT COUNT(*) FROM users WHERE name LIKE :username"
+    result = db.session.execute(sql, {"username":username}).fetchone()
+    return result[0] > 0
 
 def get_uid():
     return session.get("user_id", False)

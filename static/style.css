@@ -92,6 +92,27 @@ nav a:hover {
     font-size: 14px;
 }
 
+#register_form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+#register_form .field {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#register_form input[type=text], #register_form input[type=password] {
+    max-width: 16em;
+    height: 14px;
+    border-radius: 5px;
+}
+
+#register_form input[type=submit] {
+    max-width: 7em;
+}
+
 .content {
     flex-grow: 1;
     padding: 1em 1em 1em 2em;
@@ -169,6 +190,7 @@ footer {
     border-radius: 15px;
     color: rgb(215, 80, 60);
     padding: 8px 15px 8px 15px;
+    width: fit-content;
 }
 
 .add_team {

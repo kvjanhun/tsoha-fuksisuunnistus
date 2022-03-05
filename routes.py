@@ -1,3 +1,4 @@
+from email import message
 from flask import redirect, render_template, request, session, abort
 from app import app
 import users
@@ -32,16 +33,26 @@ def register():
 
     if request.method == "POST":
         username = request.form["username"]
+        if users.username_exists(username):
+            return render_template("register.html", 
+                                    message="Käyttäjätunnus on jo käytössä.",
+                                    username=username)
         if len(username) < 2:
-            return render_template("error.html", message="Liian lyhyt nimi.")
-        if len(username) > 30:
-            return render_template("error.html", message="Liian pitkä nimi.")
+            return render_template("register.html", 
+                                    message="""Liian lyhyt nimi. Käyttäjätunnuksen
+                                               pituus tulee olla 2-20 merkkiä.""")
+        if len(username) > 20:
+            return render_template("register.html", 
+                                    message="""Liian pitkä nimi. Käyttäjätunnuksen
+                                    pituus tulee olla 2-20 merkkiä.""")
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("error.html", message="Salasanat ovat erit.")
+            return render_template("register.html", 
+                                    message="Salasanat eivät täsmää keskenään.")
         if password1 == "":
-            return render_template("error.html", message="Kyl sul salasana pitää olla.")
+            return render_template("register.html", 
+                                    message="Salasana ei voi olla tyhjä.")
         
         # admin_status selector for development and demonstration purposes
         #   needs to be removed from:
@@ -54,7 +65,8 @@ def register():
             admin_status = False
 
         if not users.register(username, password1, admin_status):
-            return render_template("error.html", message="Nyt ei onnistunut, koetapa uuestaan.")
+            return render_template("register.html", 
+                                    message="Rekisteröinti epäonnistui, yritä uudelleen.")
         return redirect("/")
 
 @app.route("/teams",methods=["GET"])
@@ -62,7 +74,7 @@ def teams_route():
     return render_template("teams.html")
 
 @app.route("/edit_checkpoint",methods=["GET"])
-def own():
+def edit_checkpoint():
     if session.get("user_id"):
         return render_template("edit_checkpoint.html", user_info=users.get_user_info())
     else:

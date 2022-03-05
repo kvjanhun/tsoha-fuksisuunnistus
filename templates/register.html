@@ -1,15 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+{% endif %}
 <h2>Luo käyttäjätunnus</h2>
-<form action="/register" method="POST">
-Tunnus: <br><input type="text" name="username" minlength="2" maxlength="30">
-<p>
-Salasana: <br><input type="password" name="password1">
-<p>
-Salasana uudelleen: <br><input type="password" name="password2">
-<p>
-<input type="submit" value="Luo tunnus">
-<input type="checkbox" id="admin_cb" name="admin_cb" value="True">
-<label for="admin-cb">Tee tunnuksesta ylläpitäjä</label><br>
+<form action="/register" method="POST" id="register_form">
+    <span class="field">
+        <label for="name">Tunnus:</label>
+        {% if username %}
+        <input type="text" name="username" value="{{ username }}">
+        {% else %}
+        <input type="text" name="username">
+        {% endif %}
+    </span>
+    <span class="field">
+        <label for="password1">Salasana:</label>
+        <input type="password" name="password1">
+    </span>
+    <span class="field">
+        <label for="password2">Salasana uudelleen:</label>
+        <input type="password" name="password2">
+    </span>
+    <input type="submit" value="Luo tunnus">
+    <span id="admin_checkbox">
+        <input type="checkbox" id="admin_cb" name="admin_cb" value="True">
+        <label for="admin_cb">Tee tunnuksesta ylläpitäjä</label>
+    </span>
 </form>
 {% endblock %}
