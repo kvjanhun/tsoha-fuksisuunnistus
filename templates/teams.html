@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-<span id="message">
-    {{ message }}
-</span>
+{% if message %}
+    <span class="message">
+        {{ message }}
+    </span>
+{% endif %}
 {% include "add_team.html" %}
 {% include "list_teams.html" %}
 {% endblock %}
