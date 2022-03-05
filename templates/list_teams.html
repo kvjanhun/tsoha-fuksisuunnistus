@@ -1,15 +1,11 @@
 <div class="teams_container">
     {% for team in teamlist %}
     <div id="single_team_container">
-        <div id="team_content">
-            <strong>Joukkue:</strong> {{ team[0] }}
-            <br>
-            <strong>Nimi:</strong>{{ team[1] }}
-            <form action="/remove_team/{{ team[0] }}" method="POST" id="rm_team">
-                <input type="submit" id="submit" value="Poista">
-                <input type="hidden" name="token" value="{{ session.token }}">
-            </form>
-        </div>
+        <strong>Joukkue</strong>#{{ team[0] }}: {{ team[1] }}
+        <form action="/remove_team/{{ team[0] }}" method="POST" id="rm_team">
+            <input type="submit" id="submit" value="Poista">
+            <input type="hidden" name="token" value="{{ session.token }}">
+        </form>
     </div>
     {% endfor %}
 </div>
