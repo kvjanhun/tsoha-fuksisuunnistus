@@ -126,14 +126,33 @@ def teams_overview():
         if session["token"] != request.form["token"]:
             abort(403)
         name = request.form["name"]
-        if teams.create_team(name):
-            return render_template("teams.html",
-                                    teamlist=teams.get_teams(),
-                                    message="Joukkue lisätty!")
+        if len(name) > 0 and len(name) <= 50:
+            if teams.create_team(name):
+                return render_template("teams.html",
+                                        teamlist=teams.get_teams(),
+                                        message="Joukkue lisätty!")
+            else:
+                return render_template("teams.html",
+                                        teamlist=teams.get_teams(),
+                                        message="Jokin meni pieleen :))")
         else:
             return render_template("teams.html",
                                     teamlist=teams.get_teams(),
-                                    message="Jokin meni pieleen :))")
+                                    message="""Nimen pituus tulee olla 1-50 merkkiä,
+                                    mitään ei tallennettu. Yritä uudelleen.""")
+
+@app.route("/remove_team/<int:team_id>",methods=["POST"])
+def remove_team(team_id):
+    if session["token"] != request.form["token"]:
+            abort(403)
+    if teams.rm_team(team_id):
+        return render_template("teams.html",
+                                teamlist=teams.get_teams(),
+                                message="Joukkue poistettu!")
+    else:
+        return render_template("teams.html",
+                                teamlist=teams.get_teams(),
+                                message="Jokin meni pieleen :))")
 
 @app.route("/admin")
 def admin():
