@@ -27,9 +27,13 @@ CREATE TABLE groups (
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    groups_id INTEGER REFERENCES groups,
-    checkpoint_id INTEGER REFERENCES checkpoint,
+    groups_id INTEGER,
+    checkpoint_id INTEGER,
     points INTEGER,
-    review TEXT
+    review TEXT,
+    FOREIGN KEY (groups_id) REFERENCES groups
+    ON DELETE CASCADE,
+    FOREIGN KEY (checkpoint_id) REFERENCES checkpoint
+    ON DELETE SET NULL
 );
 
