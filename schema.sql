@@ -7,17 +7,21 @@ CREATE TABLE users (
 
 CREATE TABLE user_info (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
+    user_id INTEGER,
     names TEXT,
     phone TEXT
+    FOREIGN KEY (user_id) REFERENCES users
+    ON DELETE CASCADE
 );
 
 CREATE TABLE checkpoint (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
+    user_id INTEGER,
     ordinal INTEGER,
     theme TEXT,
     location TEXT
+    FOREIGN KEY (user_id) REFERENCES users
+    ON DELETE CASCADE
 );
 
 CREATE TABLE groups (
@@ -36,4 +40,3 @@ CREATE TABLE reviews (
     FOREIGN KEY (checkpoint_id) REFERENCES checkpoint
     ON DELETE SET NULL
 );
-
