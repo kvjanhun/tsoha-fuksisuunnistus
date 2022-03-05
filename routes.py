@@ -18,7 +18,8 @@ def login():
         password = request.form["password"]
 
         if not users.login(username, password):
-            return render_template("error.html", message="Kirjautuminen epäonnistui.")
+            return render_template("index.html", 
+                                    message="Kirjautuminen epäonnistui, yritä uudelleen!")
         return redirect("/")
 
 @app.route("/logout")
@@ -110,9 +111,13 @@ def send_checkpoint():
     theme = request.form["theme"]
     location = request.form["location"]
     if users.update_info(names, phone, theme, location):
-        return render_template("edit_checkpoint.html", message="Tiedot päivitetty!")
+        return render_template("edit_checkpoint.html",
+                                message="Tiedot päivitetty!",
+                                user_info=users.get_user_info())
     else:
-        return render_template("error.html", message="Tietojen päivittäminen epäonnistui.")
+        return render_template("edit_checkpoint.html",
+                                message="Tietojen päivittäminen epäonnistui.",
+                                user_info=users.get_user_info())
 
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
@@ -136,7 +141,10 @@ def checkpoint():
 @app.route("/teams_overview",methods=["GET","POST"])
 def teams_overview():
     if request.method == "GET":
-        return render_template("teams.html", teamlist=teams.get_teams())
+        if users.is_user() and users.is_admin():
+            return render_template("teams.html", teamlist=teams.get_teams())
+        else:
+            return redirect("/")
 
     if request.method == "POST":
         if session["token"] != request.form["token"]:
@@ -179,4 +187,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=teams.get_team_ids())
+    return render_template("test.html", message=teams.get_team_ids())

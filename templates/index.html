@@ -16,6 +16,11 @@ Tällä hetkellä voit:<ul>
 </ul>
 <p>
 {% else %}
+{% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+{% endif %}
 <h2>Kirjaudu sisään</h2>
 Sovelluksen käyttäminen vaatii sisäänkirjautumisen. Kirjaudu
 sisään tai <a href="/register">luo tunnus</a>.
