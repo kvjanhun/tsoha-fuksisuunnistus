@@ -41,25 +41,23 @@ Sovellukseen kirjaudutaan sisään luodulla tunnuksella. Käyttäjän roolissa t
 * Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia, vain järjestyksessä seuraavan rastin sijainnin ja vetäjät
 
 ### Nykytilanne
-Sovelluksen toiminnallisuus on vielä kesken. Sovelluksen raakile on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
+Sovelluksen toiminnallisuus on vielä osittain kesken. Sovellus on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
 
 #### Toteutettu toiminnallisuus:
 * Käyttäjätunnusten luominen ja kirjautuminen
-* Rastin tietojen tallentaminen, jos tietoja ei ennestään ollut. Uusi käyttäjä voi Oma rasti -sivun kautta täyttää tiedot ja tallentaa ne tietokantaan. Tietoja voi myös muokata.
-* Ylläpitäjän Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit. Tällä hetkellä uudelle käyttäjälle ei automaattisesti luoda rastia, joten uuden käyttäjän tiedot tulevat näkyville vasta, kun jotain on tallennettu Oma rasti -sivulla. 
-* Yksittäisten rastien tarkastelu Ylläpitäjä-sivulla.
+* Rastin tietojen tallentaminen ja muokkaaminen.
+* Ylläpitäjän Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit.
+* Yksittäisten rastien tarkastelu ja muokkaus Ylläpitäjä-sivulla.
+* Ylläpitäjä voi lisätä ja poistaa joukkueita.
 
 #### Muutokset edellisestä välipalautuksesta:
-* Kirjautumislomake upotettu yläpalkkiin.
-* Rekisteröityessä valittavissa ylläpitäjän käyttäjärooli. Tämä on väliaikainen testiominaisuus. Varsinaisessa käytössä kaikki rekisteröityvät tavallisina käyttäjinä. Ylläpitäjän oikeudet voi asettaa vain suoraan tietokantakyselyllä.
-* Oma rasti -linkki ja reitti /user/<user_id> luotu. Oma rasti -sivulla erikseen rastin tietojen katselu ja muokkaus, ennen vain muokkaus.
-* SQL-skeemaa muutettu joukkueiden osalta, luotu erillinen taulu arviointeja varten.
-* Rastin tietoja lähetettäessä tarkastetaan istunnon poletti (token).
+* Uudelle käyttäjälle luodaan rasti ja tiedot ensimmäisen kirjautumisen yhteydessä.
+* Ylläpitäjä voi muokata rastien tietoja.
+* Virheilmoitukset esitetään samalla sivulla kuin mistä virhe on peräisin. Lomakkeiden tiedot tallennetaan ja näytetään lomakkeessa virheen jälkeen.
+* Ylläpitäjä voi lisätä ja poistaa joukkueita.
+* SQL-skeemaa päivitetty riippuvuuksien huomioimiseksi.
+* Rekisteröitymistä paranneltu, mm. tarkastetaan ettei käyttäjätunnus ole jo käytössä.
 
 #### Ominaisuudet vielä työn alla:
-* Joukkueiden lisääminen.
 * Joukkueiden arvosteleminen.
-* Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan.
-* Käyttöliittymän johdonmukaistaminen.
-* Parempi lomakkeiden käsittely (tiedot eivät katoa virhetilanteessa, virheilmoitukset paremmin näkyviin)
-* Ylläpitäjälle mahdollisuus muokata käyttäjien tietoja.
+* Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan. Tämä on osittain toteutettu, mutta ei näy vielä käyttäjälle.
