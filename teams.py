@@ -22,7 +22,6 @@ def get_min_free_id():
     else:
         return max(ids)+1
 
-
 def get_teams():
     sql = "SELECT * FROM groups ORDER BY id"
     return db.session.execute(sql).fetchall()

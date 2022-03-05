@@ -1,7 +1,7 @@
 <div class="teams_container">
     {% for team in teamlist %}
     <div id="single_team_container">
-        <strong>Joukkue</strong>#{{ team[0] }}: {{ team[1] }}
+        Joukkue #{{ team[0] }}:<strong>{{ team[1] }}</strong>
         <form action="/remove_team/{{ team[0] }}" method="POST" id="rm_team">
             <input type="submit" id="submit" value="Poista">
             <input type="hidden" name="token" value="{{ session.token }}">
