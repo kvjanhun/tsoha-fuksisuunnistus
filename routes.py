@@ -34,22 +34,26 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         if users.username_exists(username):
-            return render_template("register.html", 
+            return render_template("register.html",
                                     message="Käyttäjätunnus on jo käytössä.",
                                     username=username)
         if len(username) < 2:
-            return render_template("register.html", 
+            return render_template("register.html",
                                     message="""Liian lyhyt nimi. Käyttäjätunnuksen
-                                               pituus tulee olla 2-20 merkkiä.""")
+                                               pituus tulee olla 2-20 merkkiä.""",
+                                               username=username)
         if len(username) > 20:
-            return render_template("register.html", 
+            return render_template("register.html",
                                     message="""Liian pitkä nimi. Käyttäjätunnuksen
-                                    pituus tulee olla 2-20 merkkiä.""")
+                                    pituus tulee olla 2-20 merkkiä.""",
+                                    username=username)
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("register.html", 
-                                    message="Salasanat eivät täsmää keskenään.")
+            return render_template("register.html",
+                                    message="Salasanat eivät täsmää keskenään.",
+                                    username=username, password1=password1,
+                                    password2=password2)
         if password1 == "":
             return render_template("register.html", 
                                     message="Salasana ei voi olla tyhjä.")

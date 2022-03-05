@@ -17,11 +17,19 @@
     </span>
     <span class="field">
         <label for="password1">Salasana:</label>
+        {% if password1 %}
+        <input type="password" name="password1" value="{{ password1 }}">
+        {% else %}
         <input type="password" name="password1">
+        {% endif %}
     </span>
     <span class="field">
         <label for="password2">Salasana uudelleen:</label>
+        {% if password1 %}
+        <input type="password" name="password2" value="{{ password2 }}">
+        {% else %}
         <input type="password" name="password2">
+        {% endif %}
     </span>
     <input type="submit" value="Luo tunnus">
     <span id="admin_checkbox">
