@@ -64,6 +64,12 @@ def get_user_info():
              WHERE u.user_id = c.user_id AND u.user_id=:id;"""
     return db.session.execute(sql, {"id":uid}).fetchone()
 
+def get_others_info(uid):
+    sql = """SELECT names, phone, theme, location
+             FROM user_info u, checkpoint c
+             WHERE u.user_id = c.user_id AND u.user_id=:id;"""
+    return db.session.execute(sql, {"id":uid}).fetchone()
+
 def uid_exists():
     """Returns True if user_info table already contains session user id."""
     uid = session["user_id"]
@@ -93,6 +99,19 @@ def create_info(names, phone, theme, location):
 def update_info(names, phone, theme, location):
     try:
         uid = session["user_id"]
+        sql1 = """UPDATE user_info SET names=:names, phone=:phone
+                WHERE user_id=:id"""
+        sql2 = """UPDATE checkpoint SET theme=:theme, location=:location
+                WHERE user_id=:id"""
+        db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
+        db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
+        db.session.commit()
+        return True
+    except:
+        return False
+
+def update_others_info(uid, names, phone, theme, location):
+    try:
         sql1 = """UPDATE user_info SET names=:names, phone=:phone
                 WHERE user_id=:id"""
         sql2 = """UPDATE checkpoint SET theme=:theme, location=:location

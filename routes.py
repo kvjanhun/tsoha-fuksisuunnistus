@@ -85,6 +85,19 @@ def edit_checkpoint():
     else:
         return redirect("/")
 
+@app.route("/edit_checkpoint/",methods=["GET"])
+def redirect_checkpoint():
+    return redirect("/checkpoint")
+
+@app.route("/edit_checkpoint/<int:uid>",methods=["GET"])
+def edit_other_checkpoint(uid):
+    if session.get("user_id"):
+        return render_template("edit_checkpoint.html",
+                                user_info=users.get_others_info(uid),
+                                admin_edit=True, uid=uid)
+    else:
+        return redirect("/")
+
 @app.route("/user",methods=["GET"])
 def user_redirect():
     if users.is_user():
@@ -119,6 +132,23 @@ def send_checkpoint():
                                 message="Tietojen päivittäminen epäonnistui.",
                                 user_info=users.get_user_info())
 
+@app.route("/send_checkpoint/<int:uid>",methods=["POST"])
+def send_other_checkpoint(uid):
+    if session["token"] != request.form["token"]:
+        abort(403)
+    names = request.form["names"]
+    phone = request.form["phone"]
+    theme = request.form["theme"]
+    location = request.form["location"]
+    if users.update_others_info(uid, names, phone, theme, location):
+        return render_template("edit_checkpoint.html",
+                                message="Tiedot päivitetty!",
+                                user_info=users.get_others_info(uid))
+    else:
+        return render_template("edit_checkpoint.html",
+                                message="Tietojen päivittäminen epäonnistui.",
+                                user_info=users.get_others_info(uid))
+
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
     if session.get("user_id"):
@@ -129,7 +159,7 @@ def checkpoints():
 
 @app.route("/checkpoint", methods=["GET"])
 def checkpoint():
-    if session.get("user_id"):
+    if users.is_user() and users.is_admin():
         checkpoint=users.get_single_checkpoint(request.args.get("view_checkpoint"))
         return render_template("view_single_checkpoint.html",
                                 checkpoint=checkpoint, 

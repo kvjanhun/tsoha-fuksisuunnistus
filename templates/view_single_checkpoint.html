@@ -23,6 +23,10 @@
             <p><strong>Sijainti:</strong> {{ checkpoint[7] }}</p>
         </div>
     </div>
+    {% if select %}
+    <a href="/edit_checkpoint/{{ checkpoint[1] }}">Muokkaa rastin tietoja</a>
+    {% else %}
     <a href="/edit_checkpoint">Muokkaa rastin tietoja</a>
+    {% endif %}
 </div>
 {% endblock %}

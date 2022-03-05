@@ -6,7 +6,11 @@
     </div>
 {% endif %}
 <h2>Rastin tiedot</h2>
+{% if admin_edit %}
+<form action="/send_checkpoint/{{ uid }}" method="POST" class="uinfo">
+{% else %}
 <form action="/send_checkpoint" method="POST" class="uinfo">
+{% endif %}
     <label for="names">Rastinvetäjien nimet:</label>
     <input type="text" id="names" name="names" value="{{ user_info[0] }}">
     <label for="phone">Puhelinnumero:</label>
@@ -18,5 +22,9 @@
     <input type="submit" id="submit" value="Tallenna muutokset">
     <input type="hidden" name="token" value="{{ session.token }}">
 </form>
+{% if admin_edit %}
+<a href="/checkpoint?view_checkpoint={{ uid }}">Palaa tallentamatta</a>
+{% else %}
 <a href="/user">Palaa tallentamatta</a>
+{% endif %}
 {% endblock %}
