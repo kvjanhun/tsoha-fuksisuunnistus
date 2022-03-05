@@ -163,4 +163,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("error.html", message=teams.get_teams())
+    return render_template("error.html", message=teams.get_team_ids())
