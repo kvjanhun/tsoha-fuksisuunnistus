@@ -63,9 +63,8 @@ Sovellus on vielä osittain keskeneräinen, mutta keskeisimmät toiminnallisuude
 
 #### Ominaisuudet vielä työn alla:
 * Joukkueiden arvostelemista pitäisi parantaa
-  * Käyttöliittymä on kömpelö, sillä "Näytä"-painike jää helposti painamatta ja tällöin arvostelu ei onnistu.
-  * Arvostelemisen onnistumisesta tai epäonnistumisesta ei saa mitään viestiä.
-  * Tyyli on toteuttamatta.
+  * Käyttöliittymä on kömpelö, sillä "Näytä"-painike jää helposti painamatta ja tällöin joukkue ei ole vielä valittu eikä arvostelu onnistu.
+  * Arvostelemisen onnistumisesta tai epäonnistumisesta ei saa mitään viestiä. Joskin, epäonnistuessa tekstin pitäisi olla sama kuin ennen muokkausta, koska se haetaan tietokannasta.
 * Joukkueiden arvosteluille tulisi toteuttaa yhteenvetosivu, josta näkee joukkueiden arvostelut ja pisteet.
 * Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan. Tämä on osittain toteutettu, mutta ei vielä käytössä. Nykyisellään rastien järjestys täytyy tapahtua sovelluksen ulkopuolella eikä sovelluksessa ole ominaisuutta näyttää seuraavaa rastia rastinvetäjille.
 
