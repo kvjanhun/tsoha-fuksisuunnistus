@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+{% endif %}
+{% include "select_reviewable.html" %}
+{% include "review_tools.html" %}
+<br>
+<a href="/">Katso omat arvostelut</a>
+{% endblock %}

@@ -208,9 +208,13 @@ def remove_team(team_id):
                                 teamlist=teams.get_teams(),
                                 message="Jokin meni pieleen :))")
 
+@app.route("/review", methods=["GET"])
+def review():
+    return render_template("review.html")
+
 @app.route("/admin")
 def admin():
-    if session.get("user_id"):
+    if users.is_user() and users.is_admin():
         return render_template("admin.html")
     else:
         return redirect("/")
