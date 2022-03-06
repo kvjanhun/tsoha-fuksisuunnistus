@@ -5,3 +5,4 @@ asennus/
 __pycache__/
 venv/
 vertaisarviointi.md
+templates/test.html

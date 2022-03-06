@@ -1,6 +1,3 @@
-from functools import reduce
-import re
-from tabnanny import check
 from flask import redirect, render_template, request, session, abort
 from app import app
 import reviews
@@ -21,7 +18,7 @@ def login():
         password = request.form["password"]
 
         if not users.login(username, password):
-            return render_template("index.html", 
+            return render_template("index.html",
                                     message="Kirjautuminen epäonnistui, yritä uudelleen!")
         return redirect("/")
 
@@ -59,21 +56,18 @@ def register():
                                     username=username, password1=password1,
                                     password2=password2)
         if password1 == "":
-            return render_template("register.html", 
+            return render_template("register.html",
                                     message="Salasana ei voi olla tyhjä.")
-        
+
         # admin_status selector for development and demonstration purposes
         #   needs to be removed from:
         #   -   parameters below
         #   -   users.register(as_a_param)
         #   -   register.html
-        if request.form.getlist("admin_cb"):
-            admin_status = True
-        else:
-            admin_status = False
+        admin_status = bool(request.form.getlist("admin_cb"))
 
         if not users.register(username, password1, admin_status):
-            return render_template("register.html", 
+            return render_template("register.html",
                                     message="Rekisteröinti epäonnistui, yritä uudelleen.")
         return redirect("/")
 
@@ -113,7 +107,7 @@ def user_redirect():
 def user(uid):
     if users.is_user():
         if users.get_uid() == uid:
-            return render_template("view_single_checkpoint.html", 
+            return render_template("view_single_checkpoint.html",
                                     checkpoint=users.get_single_checkpoint(uid),
                                     select=False)
     return redirect("/")
@@ -155,7 +149,7 @@ def send_other_checkpoint(uid):
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
     if users.is_user() and users.is_admin():
-        return render_template("checkpoint_overview.html", 
+        return render_template("checkpoint_overview.html",
                                 checkpoints=users.get_checkpoints())
     else:
         return redirect("/")
@@ -165,7 +159,7 @@ def select_checkpoint():
     if users.is_user() and users.is_admin():
         checkpoint = users.get_single_checkpoint(request.args.get("view_checkpoint"))
         return render_template("view_single_checkpoint.html",
-                                checkpoint=checkpoint, 
+                                checkpoint=checkpoint,
                                 uids=users.get_valid_uids_with_names(),
                                 select=True)
     else:
@@ -201,7 +195,7 @@ def teams_overview():
 @app.route("/remove_team/<int:team_id>",methods=["POST"])
 def remove_team(team_id):
     if session["token"] != request.form["token"]:
-            abort(403)
+        abort(403)
     if teams.rm_team(team_id):
         return render_template("teams.html",
                                 teamlist=teams.get_teams(),

@@ -21,8 +21,7 @@ def get_min_free_id():
     for i in range(1, max(ids)+1):
         if i not in ids:
             return i
-    else:
-        return max(ids)+1
+    return max(ids)+1
 
 def get_teams():
     sql = "SELECT * FROM teams ORDER BY id"

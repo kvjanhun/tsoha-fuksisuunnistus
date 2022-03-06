@@ -125,14 +125,14 @@ def update_others_info(uid, names, phone, theme, location):
 
 def get_checkpoints():
     """Return all checkpoints' info as sqlalchemy.engine.result.RowProxy"""
-    sql = """SELECT c.user_id, names, phone, theme, location, ordinal 
+    sql = """SELECT c.user_id, names, phone, theme, location, ordinal
              FROM checkpoints c JOIN user_info u 
              ON c.user_id=u.user_id;"""
     return db.session.execute(sql).fetchall()
 
 def get_single_checkpoint(uid):
     """Return single checkpoint info as sqlalchemy.engine.result.RowProxy"""
-    sql = """SELECT c.user_id, names, phone, theme, location, ordinal 
+    sql = """SELECT c.user_id, names, phone, theme, location, ordinal
              FROM checkpoints c JOIN user_info u 
              ON c.user_id=u.user_id WHERE c.user_id=:uid"""
     return db.session.execute(sql, {"uid":uid}).fetchone()

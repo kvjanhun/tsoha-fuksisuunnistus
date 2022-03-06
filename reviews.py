@@ -2,7 +2,7 @@ from db import db
 
 def create_review(team_id, checkpoint_id, points, review):
     try:
-        sql = """INSERT INTO reviews (team_id, checkpoint_id, points, review) 
+        sql = """INSERT INTO reviews (team_id, checkpoint_id, points, review)
                  VALUES (:team_id, :checkpoint_id, :points, :review)"""
         db.session.execute(sql, {"team_id":team_id,
                                  "checkpoint_id":checkpoint_id,
