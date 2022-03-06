@@ -241,3 +241,40 @@ footer {
 #checkpoint_select {
     margin: 0 0 20px 5px;
 }
+
+.review_tools {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+.review_tools input[type=number] {
+    max-width: 4em;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.40), 
+                      0 -1px 1px rgb(255, 255, 255), 
+                      0 1px 0 rgb(255, 255, 255);
+}
+
+.review_tools textarea {
+    max-width: 40em;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.40), 
+                      0 -1px 1px rgb(255, 255, 255), 
+                      0 1px 0 rgb(255, 255, 255);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.review_tools input[type=submit] {
+    max-width: 8em;
+    border-radius: 5px;
+}
