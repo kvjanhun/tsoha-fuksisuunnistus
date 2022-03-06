@@ -41,7 +41,7 @@ Sovellukseen kirjaudutaan sisään luodulla tunnuksella. Käyttäjän roolissa t
 * Ei näe muiden rastien tietoja eikä heidän merkkaamiaan suorituksia, vain järjestyksessä seuraavan rastin sijainnin ja vetäjät
 
 ### Nykytilanne
-Sovelluksen toiminnallisuus on vielä osittain kesken. Sovellus on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
+Sovellus on vielä osittain keskeneräinen, mutta keskeisimmät toiminnallisuudet ovat toteutettu. Sovellus on käytettävissä [Herokussa](https://fuksisuunnistus.herokuapp.com/).
 
 #### Toteutettu toiminnallisuus:
 * Käyttäjätunnusten luominen ja kirjautuminen
@@ -49,15 +49,24 @@ Sovelluksen toiminnallisuus on vielä osittain kesken. Sovellus on käytettävis
 * Ylläpitäjän Kaikki rastit -sivu listaa kaikki tietokantaan tallennetut rastit.
 * Yksittäisten rastien tarkastelu ja muokkaus Ylläpitäjä-sivulla.
 * Ylläpitäjä voi lisätä ja poistaa joukkueita.
+* Käyttäjä voi arvostella joukkueita.
 
 #### Muutokset edellisestä välipalautuksesta:
+* Herokun tietokanta on resetoitu, joten vanhat käyttäjätunnukset eivät toimi.
 * Uudelle käyttäjälle luodaan rasti ja tiedot ensimmäisen kirjautumisen yhteydessä.
 * Ylläpitäjä voi muokata rastien tietoja.
 * Virheilmoitukset esitetään samalla sivulla kuin mistä virhe on peräisin. Lomakkeiden tiedot tallennetaan ja näytetään lomakkeessa virheen jälkeen.
 * Ylläpitäjä voi lisätä ja poistaa joukkueita.
 * SQL-skeemaa päivitetty riippuvuuksien huomioimiseksi.
 * Rekisteröitymistä paranneltu, mm. tarkastetaan ettei käyttäjätunnus ole jo käytössä.
+* Käyttäjät voivat arvostella joukkueita.
 
 #### Ominaisuudet vielä työn alla:
-* Joukkueiden arvosteleminen.
-* Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan. Tämä on osittain toteutettu, mutta ei näy vielä käyttäjälle.
+* Joukkueiden arvostelemista pitäisi parantaa
+  * Käyttöliittymä on kömpelö, sillä "Näytä"-painike jää helposti painamatta ja tällöin arvostelu ei onnistu.
+  * Tyyli on toteuttamatta.
+* Joukkueiden arvosteluille tulisi toteuttaa yhteenvetosivu, josta näkee joukkueiden arvostelut ja pisteet.
+* Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan. Tämä on osittain toteutettu, mutta ei vielä käytössä. Nykyisellään rastien järjestys täytyy tapahtua sovelluksen ulkopuolella eikä sovelluksessa ole ominaisuutta näyttää seuraavaa rastia rastinvetäjille.
+
+### Tulevaisuus
+Sovellus ei ole vielä valmis. Sovelluksen kehittäminen jatkuu harrastusprojektina ja se on tavoitteena saada varteenotettavaksi vaihtoehdoksi taulukoinnille fuksisuunnistuksiin.
