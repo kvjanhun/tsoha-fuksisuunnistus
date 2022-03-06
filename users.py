@@ -125,7 +125,9 @@ def update_others_info(uid, names, phone, theme, location):
 
 def get_checkpoints():
     """Return a dict containing all checkpoints info, key=user_id"""
-    sql = "SELECT * FROM user_info u, checkpoint c WHERE u.user_id=c.user_id"
+    sql = """SELECT * FROM user_info u, checkpoint c
+             WHERE u.user_id=c.user_id
+             ORDER BY c.user_id"""
     query_result = db.session.execute(sql).fetchall()
     return {cp[1]:[cp[1], cp[2], cp[3], cp[6], cp[7]] for cp in query_result}
 
