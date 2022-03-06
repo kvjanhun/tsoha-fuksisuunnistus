@@ -9,22 +9,22 @@ CREATE TABLE user_info (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     names TEXT,
-    phone TEXT
+    phone TEXT,
     FOREIGN KEY (user_id) REFERENCES users
     ON DELETE CASCADE
 );
 
-CREATE TABLE checkpoint (
+CREATE TABLE checkpoints (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     ordinal INTEGER,
     theme TEXT,
-    location TEXT
+    location TEXT,
     FOREIGN KEY (user_id) REFERENCES users
     ON DELETE CASCADE
 );
 
-CREATE TABLE groups (
+CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
     name TEXT
 );
@@ -35,8 +35,8 @@ CREATE TABLE reviews (
     checkpoint_id INTEGER,
     points INTEGER,
     review TEXT,
-    FOREIGN KEY (groups_id) REFERENCES groups
+    FOREIGN KEY (groups_id) REFERENCES teams
     ON DELETE CASCADE,
-    FOREIGN KEY (checkpoint_id) REFERENCES checkpoint
+    FOREIGN KEY (checkpoint_id) REFERENCES checkpoints
     ON DELETE SET NULL
 );
