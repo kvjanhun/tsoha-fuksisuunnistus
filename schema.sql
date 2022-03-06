@@ -31,11 +31,11 @@ CREATE TABLE teams (
 
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    teams_id INTEGER,
+    team_id INTEGER,
     checkpoint_id INTEGER,
     points INTEGER,
     review TEXT,
-    FOREIGN KEY (teams_id) REFERENCES teams
+    FOREIGN KEY (team_id) REFERENCES teams
     ON DELETE CASCADE,
     FOREIGN KEY (checkpoint_id) REFERENCES checkpoints
     ON DELETE SET NULL
