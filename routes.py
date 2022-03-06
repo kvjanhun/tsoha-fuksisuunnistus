@@ -214,7 +214,7 @@ def review():
         team_id = request.args.get("reviewable", 0)
         checkpoint_id = users.get_uid()
         if reviews.review_exists(team_id, checkpoint_id):
-            review = reviews.get_single_review(team_id, checkpoint_id)
+            review = reviews.get_single_review(team_id, checkpoint_id)[0]
         else:
             review = False
         return render_template("review.html",
