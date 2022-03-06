@@ -2,16 +2,23 @@
 {% block content %}
 
 {% if session.user_id %}
-<h2>Niin sitä pitää!</h2>
-Olet kirjautunut sisään ja voit tehdä asioita. 
+<h2>Olet kirjautunut sovellukseen!</h2>
+Sovelluksen dokumentaatioon voit tutustua
+<a href="https://github.com/kvjanhun/tsoha-fuksisuunnistus">GitHubissa</a>. 
 <p>
-Tällä hetkellä voit:<ul>
-<li>Oma rasti -sivulla tarkastelemassa kirjautuneen
-    käyttäjän rastin tietoja tai muokkaamassa niitä.
+Keskeisimmät ominaisuudet:<ul>
+<li>Oma rasti -sivulla voit tarkastella rastisi tietoja 
+    tai muokata niitä.
 </li>
 <li>Ylläpitäjä-sivulla tarkastella kaikkia rasteja
-    listana tai yksittäin. Ylläpitäjänä muokkaaminen
-    ei ole vielä toteutettu.
+    listana tai muokata yksittäistä rastia. Ylläpitäjä-sivulla voit myös 
+    lisätä joukkueita sovellukseen.
+</li>
+<ul><li>Mikäli et näe Ylläpitäjä-linkkiä, tee uusi käyttäjätunnus ja valitse
+    rekisteröitymisen yhteydessä "Tee tunnuksesta ylläpitäjä". Tämä ominaisuus
+    on olemassa sovelluksen testikäyttöä varten.
+</li></ul>
+<li>Joukkueita voi arvostella.
 </li>
 </ul>
 <p>
