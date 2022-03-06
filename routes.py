@@ -1,3 +1,6 @@
+from functools import reduce
+import re
+from tabnanny import check
 from flask import redirect, render_template, request, session, abort
 from app import app
 import reviews
@@ -223,6 +226,22 @@ def review():
                                 review=review)
     else:
         return redirect("/")
+
+@app.route("/send_review/<int:team_id>", methods=["POST"])
+def send_review(team_id):
+    checkpoint_id = users.get_uid()
+    points = request.form["points"]
+    review = request.form["review_area"]
+    if reviews.review_exists(team_id, checkpoint_id):
+        if reviews.update_review(team_id, checkpoint_id, points, review):
+            return redirect("/review")
+        else:
+            return redirect("/review")
+    else:
+        if reviews.create_review(team_id, checkpoint_id, points, review):
+            return redirect("/review")
+        else:
+            return redirect("/review")
 
 @app.route("/admin")
 def admin():
