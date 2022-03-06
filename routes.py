@@ -152,8 +152,8 @@ def send_other_checkpoint(uid):
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
     if session.get("user_id"):
-        checkpoints=users.get_checkpoints()
-        return render_template("checkpoint_overview.html", checkpoints=checkpoints)
+        return render_template("checkpoint_overview.html", 
+                                checkpoints=users.get_checkpoints())
     else:
         return redirect("/")
 

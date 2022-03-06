@@ -15,16 +15,16 @@
 {% endif %}
 <div class="all_checkpoint_container">
     <div id="single_checkpoint_container">
-        <h3>Rasti {{ checkpoint[1] }}</h3>
+        <h3>Rasti {{ checkpoint[0] }}</h3>
         <div id="checkpoint_content">
-            <p><strong>Nimet:</strong>    {{ checkpoint[2] }}</p>
-            <p><strong>Numero:</strong>   {{ checkpoint[3] }}</p>
-            <p><strong>Rasti:</strong>    {{ checkpoint[6] }}</p>
-            <p><strong>Sijainti:</strong> {{ checkpoint[7] }}</p>
+            <p><strong>Nimet:</strong>    {{ checkpoint[1] }}</p>
+            <p><strong>Numero:</strong>   {{ checkpoint[2] }}</p>
+            <p><strong>Rasti:</strong>    {{ checkpoint[3] }}</p>
+            <p><strong>Sijainti:</strong> {{ checkpoint[4] }}</p>
         </div>
     </div>
     {% if select %}
-    <a href="/edit_checkpoint/{{ checkpoint[1] }}">Muokkaa rastin tietoja</a>
+    <a href="/edit_checkpoint/{{ checkpoint[0] }}">Muokkaa rastin tietoja</a>
     {% else %}
     <a href="/edit_checkpoint">Muokkaa rastin tietoja</a>
     {% endif %}

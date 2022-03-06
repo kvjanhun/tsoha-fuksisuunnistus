@@ -2,9 +2,9 @@
 {% block content %}
 <h2>Kaikki rastit</h2>
 <div class="all_checkpoint_container">
-    {% for checkpoint in checkpoints.values() %}
+    {% for checkpoint in checkpoints %}
     <div id="single_checkpoint_container">
-        <h3>Rasti {{ checkpoint[0] }}</h3>
+        <h3>Rasti {{ checkpoint[5] }}</h3>
         <div id="checkpoint_content">
             <p><strong>Nimet:</strong>    {{ checkpoint[1] }}</p>
             <p><strong>Numero:</strong>   {{ checkpoint[2] }}</p>

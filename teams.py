@@ -3,7 +3,7 @@ from db import db
 def create_team(name):
     try:
         next_id = get_min_free_id()
-        sql = "INSERT INTO groups (id, name) VALUES (:next_id, :name)"
+        sql = "INSERT INTO teams (id, name) VALUES (:next_id, :name)"
         db.session.execute(sql, {"next_id":next_id, "name":name})
         db.session.commit()
         return True
@@ -11,11 +11,13 @@ def create_team(name):
         return False
 
 def get_team_ids():
-    sql = "SELECT id FROM groups"
+    sql = "SELECT id FROM teams"
     return [x[0] for x in db.session.execute(sql).fetchall()]
 
 def get_min_free_id():
     ids = get_team_ids()
+    if not ids:
+        return 1
     for i in range(1, max(ids)+1):
         if i not in ids:
             return i
@@ -23,12 +25,12 @@ def get_min_free_id():
         return max(ids)+1
 
 def get_teams():
-    sql = "SELECT * FROM groups ORDER BY id"
+    sql = "SELECT * FROM teams ORDER BY id"
     return db.session.execute(sql).fetchall()
 
 def rm_team(team_id):
     try:
-        sql = "DELETE FROM groups WHERE id=:team_id"
+        sql = "DELETE FROM teams WHERE id=:team_id"
         db.session.execute(sql, {"team_id":team_id})
         db.session.commit()
         return True

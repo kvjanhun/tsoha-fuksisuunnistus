@@ -60,13 +60,13 @@ def is_admin():
 def get_user_info():
     uid = session["user_id"]
     sql = """SELECT names, phone, theme, location
-             FROM user_info u, checkpoint c
+             FROM user_info u, checkpoints c
              WHERE u.user_id = c.user_id AND u.user_id=:id;"""
     return db.session.execute(sql, {"id":uid}).fetchone()
 
 def get_others_info(uid):
     sql = """SELECT names, phone, theme, location
-             FROM user_info u, checkpoint c
+             FROM user_info u, checkpoints c
              WHERE u.user_id = c.user_id AND u.user_id=:id;"""
     return db.session.execute(sql, {"id":uid}).fetchone()
 
@@ -77,7 +77,7 @@ def uid_exists():
     return db.session.execute(sql, {"id":uid}).fetchone()[0] > 0
 
 def checkpoint_count():
-    sql = "SELECT COUNT(*) FROM checkpoint"
+    sql = "SELECT COUNT(*) FROM checkpoints"
     return db.session.execute(sql).fetchone()[0]
 
 def create_info(names, phone, theme, location):
@@ -86,7 +86,7 @@ def create_info(names, phone, theme, location):
         next_ordinal = checkpoint_count() + 1
         sql1 = """INSERT INTO user_info (user_id, names, phone)
                 VALUES (:id, :names, :phone)"""
-        sql2 = """INSERT INTO checkpoint (user_id, theme, location, ordinal)
+        sql2 = """INSERT INTO checkpoints (user_id, theme, location, ordinal)
                 VALUES (:id, :theme, :location, :ordinal)"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location,
@@ -101,7 +101,7 @@ def update_info(names, phone, theme, location):
         uid = session["user_id"]
         sql1 = """UPDATE user_info SET names=:names, phone=:phone
                 WHERE user_id=:id"""
-        sql2 = """UPDATE checkpoint SET theme=:theme, location=:location
+        sql2 = """UPDATE checkpoints SET theme=:theme, location=:location
                 WHERE user_id=:id"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
@@ -114,7 +114,7 @@ def update_others_info(uid, names, phone, theme, location):
     try:
         sql1 = """UPDATE user_info SET names=:names, phone=:phone
                 WHERE user_id=:id"""
-        sql2 = """UPDATE checkpoint SET theme=:theme, location=:location
+        sql2 = """UPDATE checkpoints SET theme=:theme, location=:location
                 WHERE user_id=:id"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
@@ -124,17 +124,17 @@ def update_others_info(uid, names, phone, theme, location):
         return False
 
 def get_checkpoints():
-    """Return a dict containing all checkpoints info, key=user_id"""
-    sql = """SELECT * FROM user_info u, checkpoint c
-             WHERE u.user_id=c.user_id
-             ORDER BY c.user_id"""
-    query_result = db.session.execute(sql).fetchall()
-    return {cp[1]:[cp[1], cp[2], cp[3], cp[6], cp[7]] for cp in query_result}
+    """Return all checkpoints' info as sqlalchemy.engine.result.RowProxy"""
+    sql = """SELECT c.user_id, names, phone, theme, location, ordinal 
+             FROM checkpoints c JOIN user_info u 
+             ON c.user_id=u.user_id;"""
+    return db.session.execute(sql).fetchall()
 
 def get_single_checkpoint(uid):
     """Return single checkpoint info as sqlalchemy.engine.result.RowProxy"""
-    sql = """SELECT * FROM user_info u, checkpoint c 
-             WHERE u.user_id=:uid AND u.user_id=c.user_id"""
+    sql = """SELECT c.user_id, names, phone, theme, location, ordinal 
+             FROM checkpoints c JOIN user_info u 
+             ON c.user_id=u.user_id WHERE c.user_id=:uid"""
     return db.session.execute(sql, {"uid":uid}).fetchone()
 
 def get_valid_uids():
