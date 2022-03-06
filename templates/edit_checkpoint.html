@@ -23,7 +23,7 @@
     <input type="hidden" name="token" value="{{ session.token }}">
 </form>
 {% if admin_edit %}
-<a href="/checkpoint?view_checkpoint={{ uid }}">Palaa tallentamatta</a>
+<a href="/select_checkpoint?view_checkpoint={{ uid }}">Palaa tallentamatta</a>
 {% else %}
 <a href="/user">Palaa rastin tietoihin</a>
 {% endif %}

@@ -1,1 +1,10 @@
-(label)(pudotusvalikko)(submit)
+<form id="select_reviewable">
+    <label for="reviewable">Arvosteltava joukkue:</label>
+    <select name="reviewable" id="reviewable">
+        <option value="">- Valitse -</option>
+        {% for team in teamlist %}
+        <option value="{{ team[0] }}">{{ team[0] }}: {{ team[1] }}</option>
+        {% endfor %}
+    </select>
+    <button id="button">Näytä</button>
+</form>

@@ -1,8 +1,9 @@
 from email import message
 from flask import redirect, render_template, request, session, abort
 from app import app
-import users
+import reviews
 import teams
+import users
 
 @app.route("/")
 def index():
@@ -157,10 +158,10 @@ def checkpoints():
     else:
         return redirect("/")
 
-@app.route("/checkpoint", methods=["GET"])
-def checkpoint():
+@app.route("/select_checkpoint", methods=["GET"])
+def select_checkpoint():
     if users.is_user() and users.is_admin():
-        checkpoint=users.get_single_checkpoint(request.args.get("view_checkpoint"))
+        checkpoint = users.get_single_checkpoint(request.args.get("view_checkpoint"))
         return render_template("view_single_checkpoint.html",
                                 checkpoint=checkpoint, 
                                 uids=users.get_valid_uids_with_names(),
@@ -210,7 +211,10 @@ def remove_team(team_id):
 
 @app.route("/review", methods=["GET"])
 def review():
-    return render_template("review.html")
+    selected = reviews.get_single_review(request.args.get("reviewable"), users.get_uid())
+    return render_template("review.html",
+                            teamlist=teams.get_teams(),
+                            selected=selected)
 
 @app.route("/admin")
 def admin():
@@ -221,4 +225,4 @@ def admin():
 
 @app.route("/testi")
 def testi():
-    return render_template("test.html", message=teams.get_team_ids())
+    return render_template("test.html", message=teams.get_teams())
