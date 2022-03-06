@@ -234,14 +234,14 @@ def send_review(team_id):
     review = request.form["review_area"]
     if reviews.review_exists(team_id, checkpoint_id):
         if reviews.update_review(team_id, checkpoint_id, points, review):
-            return redirect("/review")
+            return redirect("/review?reviewable="+str(team_id))
         else:
-            return redirect("/review")
+            return redirect("/review?reviewable="+str(team_id))
     else:
         if reviews.create_review(team_id, checkpoint_id, points, review):
-            return redirect("/review")
+            return redirect("/review?reviewable="+str(team_id))
         else:
-            return redirect("/review")
+            return redirect("/review?reviewable="+str(team_id))
 
 @app.route("/admin")
 def admin():
