@@ -243,7 +243,3 @@ def admin():
         return render_template("admin.html")
     else:
         return redirect("/")
-
-@app.route("/testi")
-def testi():
-    return render_template("test.html", message=teams.get_teams())
