@@ -28,6 +28,10 @@ header a {
     color: rgb(238, 238, 238);
 }
 
+footer a {
+    color: rgb(238, 238, 238);
+}
+
 .upper_header {
     display: flex;
     flex-wrap: wrap;
