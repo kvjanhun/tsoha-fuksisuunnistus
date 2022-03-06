@@ -1,3 +1,7 @@
-<h3>Arvostele (valitun joukkueen nimi):</h3>
+{% if review %}
+<h3>Arvostele <strong>{{ team[1] }}</strong>:</h3>
 Pisteet (50-100) (numerovalinta)<br>
-Arvostelu (tekstikenttä)
+Arvostelu 
+
+{{ review }}
+{% endif %}

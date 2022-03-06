@@ -28,6 +28,10 @@ def get_teams():
     sql = "SELECT * FROM teams ORDER BY id"
     return db.session.execute(sql).fetchall()
 
+def get_single_team(team_id):
+    sql = "SELECT * FROM teams WHERE id=:team_id"
+    return db.session.execute(sql, {"team_id":team_id}).fetchone()
+
 def rm_team(team_id):
     try:
         sql = "DELETE FROM teams WHERE id=:team_id"

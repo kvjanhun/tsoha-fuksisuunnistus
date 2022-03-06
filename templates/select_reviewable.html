@@ -2,8 +2,8 @@
     <label for="reviewable">Arvosteltava joukkue:</label>
     <select name="reviewable" id="reviewable">
         <option value="">- Valitse -</option>
-        {% for team in teamlist %}
-        <option value="{{ team[0] }}">{{ team[0] }}: {{ team[1] }}</option>
+        {% for t in teamlist %}
+        <option value="{{ t[0] }}">{{ t[0] }}: {{ t[1] }}</option>
         {% endfor %}
     </select>
     <button id="button">Näytä</button>

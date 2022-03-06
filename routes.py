@@ -1,4 +1,3 @@
-from email import message
 from flask import redirect, render_template, request, session, abort
 from app import app
 import reviews
@@ -81,7 +80,7 @@ def teams_route():
 
 @app.route("/edit_checkpoint",methods=["GET"])
 def edit_checkpoint():
-    if session.get("user_id"):
+    if users.is_user():
         return render_template("edit_checkpoint.html", user_info=users.get_user_info())
     else:
         return redirect("/")
@@ -92,7 +91,7 @@ def redirect_checkpoint():
 
 @app.route("/edit_checkpoint/<int:uid>",methods=["GET"])
 def edit_other_checkpoint(uid):
-    if session.get("user_id"):
+    if users.is_user():
         return render_template("edit_checkpoint.html",
                                 user_info=users.get_others_info(uid),
                                 admin_edit=True, uid=uid)
@@ -152,7 +151,7 @@ def send_other_checkpoint(uid):
 
 @app.route("/checkpoint_overview", methods=["GET"])
 def checkpoints():
-    if session.get("user_id"):
+    if users.is_user() and users.is_admin():
         return render_template("checkpoint_overview.html", 
                                 checkpoints=users.get_checkpoints())
     else:
@@ -211,10 +210,19 @@ def remove_team(team_id):
 
 @app.route("/review", methods=["GET"])
 def review():
-    selected = reviews.get_single_review(request.args.get("reviewable"), users.get_uid())
-    return render_template("review.html",
-                            teamlist=teams.get_teams(),
-                            selected=selected)
+    if users.is_user():
+        team_id = request.args.get("reviewable", 0)
+        checkpoint_id = users.get_uid()
+        if reviews.review_exists(team_id, checkpoint_id):
+            review = reviews.get_single_review(team_id, checkpoint_id)
+        else:
+            review = False
+        return render_template("review.html",
+                                teamlist=teams.get_teams(),
+                                team=teams.get_single_team(team_id),
+                                review=review)
+    else:
+        return redirect("/")
 
 @app.route("/admin")
 def admin():
