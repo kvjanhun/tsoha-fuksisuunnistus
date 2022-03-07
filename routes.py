@@ -208,7 +208,8 @@ def remove_team(team_id):
 @app.route("/review", methods=["GET"])
 def review():
     if users.is_user():
-        team_id = request.args.get("reviewable", 0)
+        team_id = request.args.get("reviewable")
+        team_id = 0 if (team_id == None or team_id == '') else int(team_id)
         checkpoint_id = users.get_uid()
         if reviews.review_exists(team_id, checkpoint_id):
             review = reviews.get_single_review(team_id, checkpoint_id)[0]
