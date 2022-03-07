@@ -50,6 +50,7 @@ Sovellus on vielä osittain keskeneräinen, mutta keskeisimmät toiminnallisuude
 * Yksittäisten rastien tarkastelu ja muokkaus Ylläpitäjä-sivulla.
 * Ylläpitäjä voi lisätä ja poistaa joukkueita.
 * Käyttäjä voi arvostella joukkueita.
+* Ylläpitäjä näkee joukkueiden sijoitukset.
 
 #### Muutokset edellisestä välipalautuksesta:
 * Herokun tietokanta on resetoitu, joten vanhat käyttäjätunnukset eivät toimi.
@@ -60,11 +61,12 @@ Sovellus on vielä osittain keskeneräinen, mutta keskeisimmät toiminnallisuude
 * SQL-skeemaa päivitetty riippuvuuksien huomioimiseksi.
 * Rekisteröitymistä paranneltu, mm. tarkastetaan ettei käyttäjätunnus ole jo käytössä.
 * Käyttäjät voivat arvostella joukkueita.
+* Ylläpitäjä näkee joukkueiden sijoitukset.
 
 #### Ominaisuudet vielä työn alla:
 * Joukkueiden arvostelemista pitäisi parantaa
   * Käyttöliittymä on kömpelö, sillä "Näytä"-painike jää helposti painamatta ja tällöin joukkue ei ole vielä valittu eikä arvostelu onnistu.
-* Joukkueiden arvosteluille tulisi toteuttaa yhteenvetosivu, josta näkee joukkueiden arvostelut ja pisteet.
+* Joukkueille tulisi toteuttaa joukkuekohtaiset sivut, josta näkee valitun joukkueen arvostelut rasteittain.
 * Rasteille muutettavissa oleva järjestysnumero tietokantaan. Tämä näkyviin rastin numerona nykyisen id:n sijaan. Tämä on osittain toteutettu, mutta ei vielä käytössä. Nykyisellään rastien järjestys täytyy tapahtua sovelluksen ulkopuolella eikä sovelluksessa ole ominaisuutta näyttää seuraavaa rastia rastinvetäjille.
 
 ### Tulevaisuus
