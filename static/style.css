@@ -282,3 +282,41 @@ footer {
     max-width: 8em;
     border-radius: 5px;
 }
+
+.ranking_container {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 1em 0 1em 0;
+}
+
+#rank_container {
+    display: flex;
+    
+}
+
+#rank_container #title strong {
+    background-color: rgb(17, 82, 92);
+    border-radius: 10px;
+    color:rgb(235, 255, 255);
+    font-size: 28px;
+    padding: 5px 10px 5px 10px;
+}
+
+#rank_container #title {
+    background-color: rgb(235, 245, 245);
+    border-bottom: 1px solid rgb(200, 225, 225);
+    font-size: 22px;
+    padding: 0 10px 0 5px;
+    min-width: 10em;
+}
+
+#rank_container #points {
+    background-color: rgb(30, 170, 186);
+    border-bottom: 1px solid rgb(200, 225, 225);
+    border-left: 2px dotted rgb(235, 255, 255);
+    color: rgb(235, 255, 255);
+    font-size: 28px;
+    padding: 0 10px 0 10px;
+    min-width: 3em;
+}

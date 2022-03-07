@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 <h2>Parhaat joukkueet</h2>
-<div class="teams_container">
+<div class="ranking_container">
     {% for team in teamlist %}
-    <div id="team_container">
-        <p><strong>#{{ team[0] }}:</strong> {{ team[1][0] }}</p>
-        <p><strong>Pisteet:</strong>  {{ team[1][1] }}</p>
+    <div id="rank_container">
+        <span id="title"><strong>#{{ team[0] }}</strong> {{ team[1][0] }}</span>
+        <span id="points">{{ team[1][1] }} p</span>
     </div>
     {% endfor %}
 </div>
