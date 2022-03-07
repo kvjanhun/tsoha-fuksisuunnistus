@@ -84,7 +84,7 @@ def edit_checkpoint():
 
 @app.route("/edit_checkpoint/",methods=["GET"])
 def redirect_checkpoint():
-    return redirect("/checkpoint")
+    return redirect("/select_checkpoint")
 
 @app.route("/edit_checkpoint/<int:uid>",methods=["GET"])
 def edit_other_checkpoint(uid):
