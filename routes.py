@@ -225,6 +225,29 @@ def review():
     else:
         return redirect("/")
 
+@app.route("/review/<int:status>", methods=["GET"])
+def review_with_status(status):
+    if users.is_user():
+        team_id = request.args.get("reviewable")
+        team_id = 0 if (team_id == None or team_id == '') else int(team_id)
+        checkpoint_id = users.get_uid()
+        if reviews.review_exists(team_id, checkpoint_id):
+            review = reviews.get_single_review(team_id, checkpoint_id)[0]
+        else:
+            review = False
+        if status > 0:
+            return render_template("review.html",
+                                    teamlist=teams.get_teams(),
+                                    team=teams.get_single_team(team_id),
+                                    review=review, message="Arvostelu tallennettu!")
+        else:
+            return render_template("review.html",
+                                    teamlist=teams.get_teams(),
+                                    team=teams.get_single_team(team_id),
+                                    review=review, message="Arvostelu epäonnistui!")
+    else:
+        return redirect("/")
+
 @app.route("/send_review/<int:team_id>", methods=["POST"])
 def send_review(team_id):
     checkpoint_id = users.get_uid()
@@ -232,14 +255,14 @@ def send_review(team_id):
     review = request.form["review_area"]
     if reviews.review_exists(team_id, checkpoint_id):
         if reviews.update_review(team_id, checkpoint_id, points, review):
-            return redirect("/review?reviewable="+str(team_id))
+            return redirect("/review/1")
         else:
-            return redirect("/review?reviewable="+str(team_id))
+            return redirect("/review/0")
     else:
         if reviews.create_review(team_id, checkpoint_id, points, review):
-            return redirect("/review?reviewable="+str(team_id))
+            return redirect("/review/1")
         else:
-            return redirect("/review?reviewable="+str(team_id))
+            return redirect("/review/0")
 
 @app.route("/admin")
 def admin():

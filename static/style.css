@@ -242,6 +242,10 @@ footer {
     margin: 0 0 20px 5px;
 }
 
+#select_reviewable {
+    margin: 1em 0 0 0;
+}
+
 .review_tools {
     display: flex;
     flex-flow: column nowrap;
