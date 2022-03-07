@@ -8,7 +8,7 @@ import users
 def index():
     return render_template("index.html")
 
-@app.route("/login",methods=["GET","POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         return render_template("login.html")
@@ -27,7 +27,7 @@ def logout():
     users.logout()
     return redirect("/")
 
-@app.route("/register",methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
         return render_template("register.html")
@@ -42,11 +42,11 @@ def register():
             return render_template("register.html",
                                     message="""Liian lyhyt nimi. Käyttäjätunnuksen
                                                pituus tulee olla 2-20 merkkiä.""",
-                                               username=username)
+                                    username=username)
         if len(username) > 20:
             return render_template("register.html",
                                     message="""Liian pitkä nimi. Käyttäjätunnuksen
-                                    pituus tulee olla 2-20 merkkiä.""",
+                                               pituus tulee olla 2-20 merkkiä.""",
                                     username=username)
         password1 = request.form["password1"]
         password2 = request.form["password2"]
@@ -71,31 +71,14 @@ def register():
                                     message="Rekisteröinti epäonnistui, yritä uudelleen.")
         return redirect("/")
 
-@app.route("/teams",methods=["GET"])
-def teams_route():
-    return render_template("teams.html")
-
-@app.route("/edit_checkpoint",methods=["GET"])
-def edit_checkpoint():
-    if users.is_user():
-        return render_template("edit_checkpoint.html", user_info=users.get_user_info())
+@app.route("/admin", methods=["GET"])
+def admin():
+    if users.is_user() and users.is_admin():
+        return render_template("admin.html")
     else:
         return redirect("/")
 
-@app.route("/edit_checkpoint/",methods=["GET"])
-def redirect_checkpoint():
-    return redirect("/select_checkpoint")
-
-@app.route("/edit_checkpoint/<int:uid>",methods=["GET"])
-def edit_other_checkpoint(uid):
-    if users.is_user():
-        return render_template("edit_checkpoint.html",
-                                user_info=users.get_others_info(uid),
-                                admin_edit=True, uid=uid)
-    else:
-        return redirect("/")
-
-@app.route("/user",methods=["GET"])
+@app.route("/user", methods=["GET"])
 def user_redirect():
     if users.is_user():
         uid = str(users.get_uid())
@@ -103,16 +86,35 @@ def user_redirect():
     else:
         return redirect("/")
 
-@app.route("/user/<int:uid>",methods=["GET"])
+@app.route("/user/<int:uid>", methods=["GET"])
 def user(uid):
-    if users.is_user():
-        if users.get_uid() == uid:
-            return render_template("view_single_checkpoint.html",
-                                    checkpoint=users.get_single_checkpoint(uid),
-                                    select=False)
+    if users.is_user() and users.get_uid() == uid:
+        return render_template("view_single_checkpoint.html",
+                                checkpoint=users.get_single_checkpoint(uid),
+                                select=False)
     return redirect("/")
 
-@app.route("/send_checkpoint",methods=["POST"])
+@app.route("/edit_checkpoint", methods=["GET"])
+def edit_checkpoint():
+    if users.is_user():
+        return render_template("edit_checkpoint.html", user_info=users.get_user_info())
+    else:
+        return redirect("/")
+
+@app.route("/edit_checkpoint/", methods=["GET"])
+def redirect_checkpoint():
+    return redirect("/select_checkpoint")
+
+@app.route("/edit_checkpoint/<int:uid>", methods=["GET"])
+def edit_other_checkpoint(uid):
+    if users.is_user() and users.is_admin():
+        return render_template("edit_checkpoint.html",
+                                user_info=users.get_others_info(uid),
+                                admin_edit=True, uid=uid)
+    else:
+        return redirect("/")
+
+@app.route("/send_checkpoint", methods=["POST"])
 def send_checkpoint():
     if session["token"] != request.form["token"]:
         abort(403)
@@ -129,7 +131,7 @@ def send_checkpoint():
                                 message="Tietojen päivittäminen epäonnistui.",
                                 user_info=users.get_user_info())
 
-@app.route("/send_checkpoint/<int:uid>",methods=["POST"])
+@app.route("/send_checkpoint/<int:uid>", methods=["POST"])
 def send_other_checkpoint(uid):
     if session["token"] != request.form["token"]:
         abort(403)
@@ -147,7 +149,7 @@ def send_other_checkpoint(uid):
                                 user_info=users.get_others_info(uid))
 
 @app.route("/checkpoint_overview", methods=["GET"])
-def checkpoints():
+def checkpoint_overview():
     if users.is_user() and users.is_admin():
         return render_template("checkpoint_overview.html",
                                 checkpoints=users.get_checkpoints())
@@ -158,6 +160,7 @@ def checkpoints():
 def select_checkpoint():
     if users.is_user() and users.is_admin():
         selected_uid = request.args.get("view_checkpoint")
+        # default to 0 if dropdown "view_checkpoint" not selected:
         selected_uid = 0 if (selected_uid == None or selected_uid == '') \
                          else int(selected_uid)
         checkpoint = users.get_single_checkpoint(selected_uid)
@@ -168,7 +171,7 @@ def select_checkpoint():
     else:
         return redirect("/")
 
-@app.route("/teams_overview",methods=["GET","POST"])
+@app.route("/teams_overview", methods=["GET", "POST"])
 def teams_overview():
     if request.method == "GET":
         if users.is_user() and users.is_admin():
@@ -188,14 +191,14 @@ def teams_overview():
             else:
                 return render_template("teams.html",
                                         teamlist=teams.get_teams(),
-                                        message="Jokin meni pieleen :))")
+                                        message="Joukkueen lisääminen epäonnistui.")
         else:
             return render_template("teams.html",
                                     teamlist=teams.get_teams(),
-                                    message="""Nimen pituus tulee olla 1-50 merkkiä,
-                                    mitään ei tallennettu. Yritä uudelleen.""")
+                                    message="""Nimen pituus tulee olla 1-50 merkkiä.
+                                               Mitään ei tallennettu, yritä uudelleen.""")
 
-@app.route("/remove_team/<int:team_id>",methods=["POST"])
+@app.route("/remove_team/<int:team_id>", methods=["POST"])
 def remove_team(team_id):
     if session["token"] != request.form["token"]:
         abort(403)
@@ -206,12 +209,13 @@ def remove_team(team_id):
     else:
         return render_template("teams.html",
                                 teamlist=teams.get_teams(),
-                                message="Jokin meni pieleen :))")
+                                message="Joukkueen poistaminen epäonnistui.")
 
 @app.route("/review", methods=["GET"])
 def review():
     if users.is_user():
         team_id = request.args.get("reviewable")
+        # default to 0 if dropdown "reviewable" not selected:
         team_id = 0 if (team_id == None or team_id == '') else int(team_id)
         checkpoint_id = users.get_uid()
         if reviews.review_exists(team_id, checkpoint_id):
@@ -229,6 +233,7 @@ def review():
 def review_with_status(status):
     if users.is_user():
         team_id = request.args.get("reviewable")
+        # default to 0 if dropdown "reviewable" not selected:
         team_id = 0 if (team_id == None or team_id == '') else int(team_id)
         checkpoint_id = users.get_uid()
         if reviews.review_exists(team_id, checkpoint_id):
@@ -250,6 +255,8 @@ def review_with_status(status):
 
 @app.route("/send_review/<int:team_id>", methods=["POST"])
 def send_review(team_id):
+    if session["token"] != request.form["token"]:
+        abort(403)
     checkpoint_id = users.get_uid()
     points = request.form["points"]
     review = request.form["review_area"]
@@ -267,13 +274,6 @@ def send_review(team_id):
 @app.route("/send_review/", methods=["POST"])
 def send_empty_review():
     return redirect("/review")
-
-@app.route("/admin", methods=["GET"])
-def admin():
-    if users.is_user() and users.is_admin():
-        return render_template("admin.html")
-    else:
-        return redirect("/")
 
 @app.route("/ranking", methods=["GET"])
 def ranking():

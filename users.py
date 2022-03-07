@@ -31,12 +31,12 @@ def register(name, password, admin_status):
     try:
         if admin_status is True:
             sql = """INSERT INTO users (name, password, admin)
-                 VALUES (:name, :password, TRUE)"""
+                     VALUES (:name, :password, TRUE)"""
             db.session.execute(sql, {"name":name, "password":hash_value})
             db.session.commit()
         else:
             sql = """INSERT INTO users (name, password, admin)
-                 VALUES (:name, :password, FALSE)"""
+                     VALUES (:name, :password, FALSE)"""
             db.session.execute(sql, {"name":name, "password":hash_value})
             db.session.commit()
     except:
@@ -85,9 +85,9 @@ def create_info(names, phone, theme, location):
         uid = session["user_id"]
         next_ordinal = checkpoint_count() + 1
         sql1 = """INSERT INTO user_info (user_id, names, phone)
-                VALUES (:id, :names, :phone)"""
+                  VALUES (:id, :names, :phone)"""
         sql2 = """INSERT INTO checkpoints (user_id, theme, location, ordinal)
-                VALUES (:id, :theme, :location, :ordinal)"""
+                  VALUES (:id, :theme, :location, :ordinal)"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location,
                                   "ordinal":next_ordinal})
@@ -100,9 +100,9 @@ def update_info(names, phone, theme, location):
     try:
         uid = session["user_id"]
         sql1 = """UPDATE user_info SET names=:names, phone=:phone
-                WHERE user_id=:id"""
+                  WHERE user_id=:id"""
         sql2 = """UPDATE checkpoints SET theme=:theme, location=:location
-                WHERE user_id=:id"""
+                  WHERE user_id=:id"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
         db.session.commit()
@@ -113,9 +113,9 @@ def update_info(names, phone, theme, location):
 def update_others_info(uid, names, phone, theme, location):
     try:
         sql1 = """UPDATE user_info SET names=:names, phone=:phone
-                WHERE user_id=:id"""
+                  WHERE user_id=:id"""
         sql2 = """UPDATE checkpoints SET theme=:theme, location=:location
-                WHERE user_id=:id"""
+                  WHERE user_id=:id"""
         db.session.execute(sql1, {"id":uid, "names":names, "phone":phone})
         db.session.execute(sql2, {"id":uid, "theme":theme, "location":location})
         db.session.commit()
@@ -127,7 +127,7 @@ def get_checkpoints():
     """Return all checkpoints' info as sqlalchemy.engine.result.RowProxy"""
     sql = """SELECT c.user_id, names, phone, theme, location, ordinal
              FROM checkpoints c JOIN user_info u 
-             ON c.user_id=u.user_id;"""
+             ON c.user_id=u.user_id"""
     return db.session.execute(sql).fetchall()
 
 def get_single_checkpoint(uid):
