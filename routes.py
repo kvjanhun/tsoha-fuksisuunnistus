@@ -277,5 +277,6 @@ def admin():
 
 @app.route("/ranking", methods=["GET"])
 def ranking():
-    teamlist = reviews.get_top_teams()
-    return render_template("ranking.html", teamlist=teamlist)
+    if users.is_user() and users.is_admin():
+        teamlist = reviews.get_top_teams()
+        return render_template("ranking.html", teamlist=teamlist)
