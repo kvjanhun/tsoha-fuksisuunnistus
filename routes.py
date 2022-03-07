@@ -157,7 +157,10 @@ def checkpoints():
 @app.route("/select_checkpoint", methods=["GET"])
 def select_checkpoint():
     if users.is_user() and users.is_admin():
-        checkpoint = users.get_single_checkpoint(request.args.get("view_checkpoint"))
+        selected_uid = request.args.get("view_checkpoint")
+        selected_uid = 0 if (selected_uid == None or selected_uid == '') \
+                         else int(selected_uid)
+        checkpoint = users.get_single_checkpoint(selected_uid)
         return render_template("view_single_checkpoint.html",
                                 checkpoint=checkpoint,
                                 uids=users.get_valid_uids_with_names(),
