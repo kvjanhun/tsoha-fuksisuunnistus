@@ -264,6 +264,10 @@ def send_review(team_id):
         else:
             return redirect("/review/0")
 
+@app.route("/send_review/", methods=["POST"])
+def send_empty_review():
+    return redirect("/review")
+
 @app.route("/admin")
 def admin():
     if users.is_user() and users.is_admin():
