@@ -70,4 +70,11 @@ def get_top_teams():
              GROUP BY r.team_id, t.name
              ORDER BY sum DESC"""
     query_result = db.session.execute(sql).fetchall()
-    return query_result
+    returnable = []
+    for i in range(get_reviewed_teams_count()):
+        returnable.append((i+1, query_result[i]))
+    return returnable
+
+def get_reviewed_teams_count():
+    sql = "SELECT COUNT(DISTINCT team_id) FROM reviews"
+    return db.session.execute(sql).fetchone()[0]

@@ -4,8 +4,8 @@
 <div class="teams_container">
     {% for team in teamlist %}
     <div id="team_container">
-        <p><strong>Joukkue:</strong>              {{ team[0] }}</p>
-        <p><strong>Pisteet:</strong>              {{ team[1] }}</p>
+        <p><strong>#{{ team[0] }}:</strong> {{ team[1][0] }}</p>
+        <p><strong>Pisteet:</strong>  {{ team[1][1] }}</p>
     </div>
     {% endfor %}
 </div>
