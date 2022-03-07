@@ -268,7 +268,7 @@ def send_review(team_id):
 def send_empty_review():
     return redirect("/review")
 
-@app.route("/admin")
+@app.route("/admin", methods=["GET"])
 def admin():
     if users.is_user() and users.is_admin():
         return render_template("admin.html")
