@@ -274,3 +274,8 @@ def admin():
         return render_template("admin.html")
     else:
         return redirect("/")
+
+@app.route("/ranking", methods=["GET"])
+def ranking():
+    teamlist = reviews.get_top_teams()
+    return render_template("ranking.html", teamlist=teamlist)

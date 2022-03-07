@@ -44,3 +44,30 @@ def get_single_review(team_id, checkpoint_id):
 
 def review_exists(team_id, checkpoint_id):
     return bool(get_single_review(team_id, checkpoint_id)) is not False
+
+def sum_of_points_for_team(team_id):
+    sql = "SELECT SUM(points) FROM reviews"
+    return db.session.execute(sql, {"team_id":team_id}).fetchone()[0]
+
+def individual_points_for_team(team_id):
+    sql = "SELECT points FROM reviews WHERE team_id=:team_id"
+    query_result = db.session.execute(sql, {"team_id":team_id}).fetchall()
+    return (team_id, [x[0] for x in query_result])
+
+def reviews_for_team(team_id):
+    sql = "SELECT review FROM reviews WHERE team_id=:team_id"
+    query_result = db.session.execute(sql, {"team_id":team_id}).fetchall()
+    return (team_id, [x[0] for x in query_result])
+
+def get_team_ids_reviewed():
+    sql = "SELECT team_id FROM reviews"
+    return {x[0] for x in db.session.execute(sql).fetchall()}
+
+def get_top_teams():
+    sql = """SELECT t.name, SUM(r.points), r.team_id
+             FROM reviews r, teams t
+             WHERE r.team_id=t.id
+             GROUP BY r.team_id, t.name
+             ORDER BY sum DESC"""
+    query_result = db.session.execute(sql).fetchall()
+    return query_result
